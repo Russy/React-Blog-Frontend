@@ -1,0 +1,15 @@
+.tag {
+  display: inline-block;
+  color: #9b9b9b;
+  border: 2px solid #e4e4e4;
+  border-radius: 6px;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 22px;
+  padding: 2px 4px 3px;
+  transition: all .3s;
+  margin-right: 10px;
+  &:hover {
+    border-color: #9b9b9b;
+  }
+}

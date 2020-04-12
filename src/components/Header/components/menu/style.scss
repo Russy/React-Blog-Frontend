@@ -1,0 +1,21 @@
+.main-menu {
+  text-align: left;
+  li {
+    display: inline-block;
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      display: block;
+      padding: 10px 0;
+      transition: all .3s;
+      margin-right: 30px;
+      &:hover {
+       color: #82b541;
+      }
+
+      &.active {
+        color: #82b541;
+      }
+    }
+  }
+}

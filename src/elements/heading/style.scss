@@ -1,0 +1,30 @@
+.heading {
+  color: #3a3a3a;
+  margin: 0 0 20px 0;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 1em;
+
+  &.large {
+    font-size: 50px;
+  }
+  &.medium {
+    font-size: 30px;
+  }
+
+  &.small {
+    font-size: 20px;
+  }
+
+  &__wrapper {
+    display: flex;
+  }
+
+  &__icon {
+    flex: none;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+}

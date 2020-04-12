@@ -1,0 +1,17 @@
+.button {
+  color: white;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 20px;
+  line-height: 16px;
+  font-size: 16px;
+  transition: all .3s;
+  &.primary {
+    background-color: #82b541;
+    &:hover {
+      background-color: lighten(#82b541, 10);
+    }
+  }
+}

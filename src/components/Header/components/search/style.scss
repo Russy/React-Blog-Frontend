@@ -1,0 +1,32 @@
+.search-form {
+  position: relative;
+  input {
+    width: 100%;
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    border-radius: 5px;
+    padding: 6px 8px;
+    color: #fefefe;
+    font: 14px/1.6em Arial, sans-serif;
+    transition: all 0.2s ease;
+    &::placeholder {
+      transition: all 0.2s ease;
+    }
+    &:hover, &:focus {
+      color: white;
+      background: #3c444c !important;
+
+      &::placeholder {
+        color: #fefefe
+      }
+    }
+  }
+  .fa {
+    color: #999999;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+}
