@@ -12,11 +12,19 @@ import Paragraph from '../../elements/paragaph';
 import Code from '../../elements/code';
 import Ad from '../../elements/ad';
 import { DiscussionEmbed } from 'disqus-react';
+import { GET_POSTS_REQUEST } from '../../state/posts/actions';
 
-type Props = {};
+type Props = {
+    getPosts: any
+};
 type State = {};
 
 class Home extends React.Component <Props, State> {
+
+    componentDidMount(): void {
+
+        this.props.getPosts();
+    }
 
     render() {
 
@@ -93,4 +101,12 @@ class Home extends React.Component <Props, State> {
     }
 };
 
-export default connect(null, null)(Home);
+const mapDispatchToProps = dispatch => {
+    return {
+        getPosts: () => {
+            dispatch(GET_POSTS_REQUEST)
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Home);
