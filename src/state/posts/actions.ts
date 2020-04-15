@@ -1,3 +1,5 @@
-export const GET_POSTS_REQUEST = { type: 'GET_POSTS_REQUEST', text: 'Get all posts'};
-export const GET_POSTS_SUCCESS = { type: 'GET_POSTS_SUCCESS', text: 'Get all posts success'};
-export const GET_POSTS_FAILED = { type: 'GET_POSTS_FAILED', text: 'Get all posts failed'};
+import { PostType } from '../types';
+
+export const GET_POSTS_REQUEST = () => ({ type: 'GET_POSTS_REQUEST'});
+export const GET_POSTS_SUCCESS = (posts: PostType[]) => ({ type: 'GET_POSTS_SUCCESS', payload: posts});
+export const GET_POSTS_FAILED = () => ({ type: 'GET_POSTS_FAILED'});
