@@ -24,7 +24,7 @@ export default class Post extends React.Component<Props, {}> {
                 icon={
                     <Icon
                         color="#4cc1be"
-                        className="fa fa-code"
+                        className={post.icon}
                     />
                 }
             >
@@ -43,7 +43,7 @@ export default class Post extends React.Component<Props, {}> {
                 })}
             </SubSection>
             <Paragraph>
-                {post.content}
+                {post.excerpt}...
             </Paragraph>
 
             <Button type="primary" onClick={() => {

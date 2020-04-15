@@ -13,6 +13,8 @@ export type PostType = {
     id: number,
     title: string,
     content: string,
+    excerpt: string,
+    icon: string,
     slug: string,
     is_published: number,
     updated_at: string,
