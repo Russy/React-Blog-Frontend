@@ -1,41 +1,22 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './style.scss';
 
-type Props = {};
-type State = {
-    term: string;
-};
-
-class Search extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            term: ''
-        };
-    }
-
-    onChange = (event: any) => {
-        const {value} = event.currentTarget;
-        this.setState({
-            term: value
-        });
-    };
-
-    render() {
-        return <>
-            <div className="search-form">
-                <input
-                    onChange={this.onChange}
-                    type="text"
-                    value={this.state.term}
-                    placeholder="Search..."
-                />
-                <div className="fa fa-search" />
-            </div>
-        </>;
-    }
+function Search() {
+    const [term, test] = useState('');
+    return <>
+        <div className="search-form">
+            <input
+                onChange={(event) => {
+                    test(event.currentTarget.value);
+                }}
+                type="text"
+                value={term}
+                placeholder="Search..."
+            />
+            <div className="fa fa-search"/>
+        </div>
+    </>;
 }
 
 export default connect(null, null)(Search);

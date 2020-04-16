@@ -7,6 +7,7 @@ import {
     } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Post from './pages/Post';
 
 export default function App() {
     return (
@@ -15,6 +16,9 @@ export default function App() {
                 <Switch>
                     <Route path="/about">
                         <About/>
+                    </Route>
+                    <Route path="/post/:slug">
+                        <Post/>
                     </Route>
                     <Route path="/">
                         <Home/>

@@ -5,9 +5,8 @@ import SubSection from '../../elements/subSection';
 import moment from 'moment';
 import Tag from '../../elements/tag';
 import Paragraph from '../../elements/paragaph';
-import Code from '../../elements/code';
 import { PostType } from '../../state/types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '../../elements/button';
 
 type Props = {
@@ -15,6 +14,9 @@ type Props = {
 }
 
 export default class Post extends React.Component<Props, {}> {
+    constructor(props) {
+        super(props);
+    }
     render() {
         const {post} = this.props;
         return <div className="mb-60">
@@ -46,12 +48,9 @@ export default class Post extends React.Component<Props, {}> {
                 {post.excerpt}...
             </Paragraph>
 
-            <Button type="primary" onClick={() => {
-                //
-            }}>
-                Read more
-            </Button>
-
+            <Link className={"button primary"} to={`/post/${post.slug}`}>
+                Read More
+            </Link>
 
         </div>;
     }
