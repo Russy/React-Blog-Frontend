@@ -1,19 +1,21 @@
 import defaultState, { PostsStoreState } from './state';
+import * as actions from './actions';
 
-export const posts = (posts: PostsStoreState = defaultState, {type, payload}) => {
+export const posts = (state: PostsStoreState = defaultState, {type, payload}) => {
+
     switch (type) {
         case 'GET_POSTS_REQUEST':
             return {
-                ...posts,
+                ...state,
                 is_fetching: true
             };
         case 'GET_POSTS_SUCCESS':
             return {
-                ...posts,
+                ...state,
                 posts: payload,
                 is_fetching: false
             };
         default:
-            return posts;
+            return state;
     }
 };

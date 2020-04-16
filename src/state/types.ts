@@ -19,5 +19,5 @@ export type PostType = {
     is_published: number,
     updated_at: string,
     tags: TagType[],
-    categories: CategoryType
+    categories: CategoryType[]
 }

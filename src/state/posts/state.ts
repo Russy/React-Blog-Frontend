@@ -3,7 +3,7 @@ import { PostType } from '../types';
 export type PostsStoreState = {
     is_fetching: boolean,
     errors: any[],
-    posts: PostType[]
+    posts: PostType[],
 };
 
 const defaultState: PostsStoreState = {

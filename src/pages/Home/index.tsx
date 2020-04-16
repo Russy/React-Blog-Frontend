@@ -22,14 +22,7 @@ class Home extends React.Component <Props, State> {
     }
 
     render() {
-
         const {posts} = this.props;
-
-        const config = {
-            url: 'https://koshelki.pro',
-            identifier: 'home',
-            title: 'Title',
-        };
 
         return <Layout>
             <Container>
@@ -39,16 +32,9 @@ class Home extends React.Component <Props, State> {
                         <Ad/>
                     </>}
                 >
-
                     {posts.map((post: PostType, key) => {
                         return <Post  post={post} key={key} />;
                     })}
-
-                  {/*  <DiscussionEmbed
-                        shortname='example'
-                        config={config}
-                    />
-*/}
                 </SidebarLayout>
             </Container>
         </Layout>;
