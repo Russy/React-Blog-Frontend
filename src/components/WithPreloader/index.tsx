@@ -8,9 +8,7 @@ type Props = {
 
 export default function WithPreloader(props: Props) {
     const {isLoading} = props;
-    return <>
-        {isLoading ? <div className={'preloader'}>
-            Loading...
-        </div> : props.children}
-    </>;
+    return <div className={isLoading ? 'overlay' : ''}>
+        {props.children}
+    </div>;
 };
