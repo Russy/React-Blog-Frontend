@@ -3,8 +3,8 @@ export const Api = {
     login: (params) => {
 
     },
-    getPosts: async () => {
-        const response = await fetch(`${endpoint}/posts`);
+    getPosts: async (page: string = '1') => {
+        const response = await fetch(`${endpoint}/posts?page=${page}`);
         const data = await response.json();
         return data.data;
     },

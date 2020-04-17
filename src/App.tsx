@@ -20,6 +20,9 @@ export default function App() {
                     <Route path="/post/:slug">
                         <Post/>
                     </Route>
+                    <Route path="/page/:page">
+                        <Home/>
+                    </Route>
                     <Route path="/">
                         <Home/>
                     </Route>

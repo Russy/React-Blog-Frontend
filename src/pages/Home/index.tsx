@@ -4,52 +4,65 @@ import Layout from '../../elements/layout';
 import Container from '../../elements/container';
 import SidebarLayout from '../../elements/sidebarLayout';
 import Ad from '../../elements/ad';
-import { DiscussionEmbed } from 'disqus-react';
 import { GET_POSTS_REQUEST } from '../../state/posts/actions';
-import { getPosts } from '../../state/posts/selectors';
+import { getIsFetching, getPagination, getPosts } from '../../state/posts/selectors';
 import Post from '../../components/Post';
-import { PostType } from '../../state/types';
+import { PostType, StoreState, Pagination as PaginationType } from '../../state/types';
+import WithPreloader from '../../components/WithPreloader';
+import Pagination from '../../components/Pagination';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 type Props = {
     posts: PostType[],
-    getPosts: () => {}
+    getPosts: (page: string | undefined) => {},
+    isFetching: boolean,
+    pagination: PaginationType
 };
-type State = {};
 
-class Home extends React.Component <Props, State> {
+function Home(props: Props) {
 
-    componentDidMount(): void {
-        this.props.getPosts();
-    }
+    let {page} = useParams();
 
-    render() {
-        const {posts} = this.props;
+    useEffect(() => {
+        props.getPosts(page);
+    }, [page]);
 
-        return <Layout>
-            <Container>
-                <SidebarLayout
-                    sidebar={<>
-                        <Ad/>
-                        <Ad/>
-                    </>}
-                >
+    const {posts, isFetching, pagination} = props;
+
+    return <Layout>
+        <Container>
+            <SidebarLayout
+                sidebar={<>
+                    <Ad/>
+                    <Ad/>
+                </>}
+            >
+                <WithPreloader isLoading={isFetching}>
                     {posts.map((post: PostType, key) => {
-                        return <Post  post={post} key={key} />;
+                        return <Post post={post} key={key}/>;
                     })}
-                </SidebarLayout>
-            </Container>
-        </Layout>;
-    }
-};
+                    <Pagination
+                        pagination={pagination}
+                    />
+                </WithPreloader>
+
+            </SidebarLayout>
+        </Container>
+    </Layout>;
+}
 
 const mapDispatchToProps = dispatch => {
     return {
-        getPosts: () => {
-            dispatch(GET_POSTS_REQUEST())
+        getPosts: (page) => {
+            dispatch(GET_POSTS_REQUEST(page));
         }
-    }
-}
+    };
+};
 
 
-export default connect((state) => ({
-    posts: getPosts(state)
+export default connect((state: StoreState) => ({
+    posts: getPosts(state),
+    isFetching: getIsFetching(state),
+    pagination: getPagination(state)
 }), mapDispatchToProps)(Home);

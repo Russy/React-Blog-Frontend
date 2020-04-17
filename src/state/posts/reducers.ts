@@ -12,8 +12,14 @@ export const posts = (state: PostsStoreState = defaultState, {type, payload}) =>
         case 'GET_POSTS_SUCCESS':
             return {
                 ...state,
-                posts: payload,
-                is_fetching: false
+                posts: payload.data,
+                is_fetching: false,
+                pagination: {
+                    per_page: payload.per_page,
+                    current_page: payload.current_page,
+                    last_page: payload.last_page,
+                    total: payload.total
+                }
             };
         default:
             return state;

@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../elements/layout';
 import Container from '../../elements/container';
 import SidebarLayout from '../../elements/sidebarLayout';
 import Ad from '../../elements/ad';
-import {useParams
-} from "react-router-dom";
+import {
+    useParams
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { GET_POST_REQUEST } from '../../state/post/actions';
 import Heading from '../../elements/heading';
@@ -13,37 +14,39 @@ import SubSection from '../../elements/subSection';
 import moment from 'moment';
 import Tag from '../../elements/tag';
 import Paragraph from '../../elements/paragaph';
-import { getPosts } from '../../state/posts/selectors';
-import { getPost } from '../../state/post/selectors';
-import { PostType } from '../../state/types';
+import { getIsFetching, getPost } from '../../state/post/selectors';
+import { PostType, StoreState } from '../../state/types';
 import { DiscussionEmbed } from 'disqus-react';
+import WithPreloader from '../../components/WithPreloader';
 
 type Props = {
     getPost: (slug: string) => void;
-    post: PostType
+    post: PostType,
+    isFetching: boolean
 }
 
-function Post(props: Props)  {
-        const {post} = props;
-        let { slug } = useParams();
+function Post(props: Props) {
+    const {post} = props;
+    let {slug} = useParams();
 
-        useEffect(() => {
-            props.getPost(slug);
-        }, []);
+    useEffect(() => {
+        props.getPost(slug);
+    }, []);
 
     const config = {
         url: 'https://koshelki.pro',
         identifier: 'home',
         title: 'Title',
     };
-        return  <Layout>
-            <Container>
-                <SidebarLayout
-                    sidebar={<>
-                        <Ad/>
-                        <Ad/>
-                    </>}
-                >
+    return <Layout>
+        <Container>
+            <SidebarLayout
+                sidebar={<>
+                    <Ad/>
+                    <Ad/>
+                </>}
+            >
+                <WithPreloader isLoading={props.isFetching}>
                     <Heading
                         classNames={'pb-30'}
                         size={'large'}
@@ -56,18 +59,18 @@ function Post(props: Props)  {
                     >
                         {post.title}
                     </Heading>
-                    <SubSection className="mb-20">
+                    <SubSection>
                         Posted at: {moment(post.updated_at).format('D/MM/YYYY')}
                     </SubSection>
-                   {/* <SubSection className={'mb-30'} style={{marginTop: '-1px'}}>
+                    <SubSection className={'mb-50'} style={{marginTop: '-1px'}}>
                         {post.tags.map((tag, key) => {
-                            return  <Tag
+                            return <Tag
                                 key={key}
                                 text={tag.title}
                                 url={`/tags/${tag.slug}`}
                             />;
                         })}
-                    </SubSection>*/}
+                    </SubSection>
                     <Paragraph>
                         {post.content}
                     </Paragraph>
@@ -78,22 +81,25 @@ function Post(props: Props)  {
                         config={config}
                     />
 
+                </WithPreloader>
+
             </SidebarLayout>
-            </Container>;
-        </Layout>
+        </Container>;
+    </Layout>;
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         getPost: (slug: string) => {
-            dispatch(GET_POST_REQUEST(slug))
+            dispatch(GET_POST_REQUEST(slug));
         }
-    }
+    };
 };
 
 export default connect(
-    (state) => ({
-        post: getPost(state)
+    (state: StoreState) => ({
+        post: getPost(state),
+        isFetching: getIsFetching(state)
     }),
     mapDispatchToProps
 )(Post);

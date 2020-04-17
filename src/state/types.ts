@@ -1,3 +1,11 @@
+import { PostsStoreState } from './posts/state';
+import { PostStoreState } from './post/state';
+
+export interface StoreState {
+    readonly posts: PostsStoreState;
+    readonly post: PostStoreState;
+}
+
 export type TagType = {
     id: number,
     title: string,
@@ -20,4 +28,11 @@ export type PostType = {
     updated_at: string,
     tags: TagType[],
     categories: CategoryType[]
+}
+
+export type Pagination =  {
+    per_page: number;
+    current_page: number;
+    last_page: number;
+    total: number;
 }
