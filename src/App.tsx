@@ -23,6 +23,9 @@ export default function App() {
                     <Route path="/page/:page">
                         <Home/>
                     </Route>
+                    <Route path="/search/:query">
+                        <Home/>
+                    </Route>
                     <Route path="/">
                         <Home/>
                     </Route>

@@ -1,8 +1,10 @@
 const endpoint = process.env.REACT_APP_API_URL;
 export const Api = {
+
     login: (params) => {
 
     },
+
     getPosts: async (page: string = '1') => {
         const response = await fetch(`${endpoint}/posts?page=${page}`);
         const data = await response.json();
@@ -10,6 +12,17 @@ export const Api = {
     },
     getPost: async (slug: string) => {
         const response = await fetch(`${endpoint}/post/${slug}`);
+        const data = await response.json();
+        return data.data;
+    },
+    searchPosts: async (query: string) => {
+        const response = await fetch(`${endpoint}/search`, {
+            method: 'POST',
+            body: JSON.stringify({query}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         const data = await response.json();
         return data.data;
     }

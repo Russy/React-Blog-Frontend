@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 import './style.scss';
+import { useHistory } from "react-router-dom";
 
-function Search() {
-    const [term, test] = useState('');
+export default function Search() {
+    const [query, setQuery] = useState('');
+    const history = useHistory();
+
     return <>
         <div className="search-form">
             <input
                 onChange={(event) => {
-                    test(event.currentTarget.value);
+                    setQuery(event.currentTarget.value);
+                }}
+                onKeyUp={(event) => {
+                    if(event.keyCode == 13){
+                        event.preventDefault();
+                        history.push(`/search/${query}`);
+                        setQuery('');
+                    }
                 }}
                 type="text"
-                value={term}
+                value={query}
                 placeholder="Search..."
             />
             <div className="fa fa-search"/>
         </div>
     </>;
 }
-
-export default connect(null, null)(Search);

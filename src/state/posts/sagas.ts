@@ -6,9 +6,15 @@ function* fetchPosts(action) {
     try {
         const posts = yield call(Api.getPosts, action.payload);
         yield put(actions.GET_POSTS_SUCCESS(posts));
+    } catch (e) {
+        // yield put({type: "USER_FETCH_FAILED", message: e.message});
+    }
+}
 
-        /*const user = yield call(Api.fetchUser, action.payload.userId);
-        yield put({type: "USER_FETCH_SUCCEEDED", user: user});*/
+function* search(action) {
+    try {
+        const posts = yield call(Api.searchPosts, action.payload);
+        yield put(actions.GET_POSTS_SUCCESS(posts));
     } catch (e) {
         // yield put({type: "USER_FETCH_FAILED", message: e.message});
     }
@@ -16,4 +22,5 @@ function* fetchPosts(action) {
 
 export function* postsSaga() {
     yield takeLatest('GET_POSTS_REQUEST', fetchPosts);
+    yield takeLatest('SEARCH_POSTS_REQUEST', search);
 }

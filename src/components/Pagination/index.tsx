@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss';
 import { Pagination as PaginationType } from '../../state/types';
 import { Link } from 'react-router-dom';
@@ -10,11 +10,20 @@ type Props = {
 export default function Pagination(props: Props) {
     const {pagination} = props;
 
+    const [active, setActive] = useState(0);
+
+    useEffect(() => {
+        setActive(pagination.current_page);
+    }, [pagination]);
+
     return <ul className="pagination">
         {new Array(pagination.last_page).fill(null).map((obj, key) => {
             return <li key={key}>
                 <Link
-                    className={(key + 1) === pagination.current_page ? 'active' : ''} to={`/page/${key + 1}`}
+                    onClick={() => {
+                            setActive(key+1);
+                        }}
+                    className={(key + 1) === active ? 'active' : ''} to={`/page/${key + 1}`}
                 >
                     {key + 1}
                 </Link>
