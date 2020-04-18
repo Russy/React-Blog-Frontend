@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Post from './pages/Post';
 import Tags from './pages/Tags';
+import Login from './pages/Login';
 
 export default function App() {
     return (
@@ -32,6 +33,9 @@ export default function App() {
                     </Route>
                     <Route path="/search/:query">
                         <Home/>
+                    </Route>
+                    <Route path="/Login">
+                        <Login/>
                     </Route>
                     <Route path="/">
                         <Home/>

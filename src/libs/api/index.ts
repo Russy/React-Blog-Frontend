@@ -1,8 +1,10 @@
+import HTTPClient from '../HTTPClient';
+
 const endpoint = process.env.REACT_APP_API_URL;
 export const Api = {
 
-    login: (params) => {
-
+    login: async (params) => {
+        return await HTTPClient.post(`${endpoint}/login`, params);
     },
 
     getPosts: async (page: string = '1') => {
