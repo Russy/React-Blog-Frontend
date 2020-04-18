@@ -6,11 +6,11 @@ import moment from 'moment';
 import Tag from '../../elements/tag';
 import Paragraph from '../../elements/paragaph';
 import { PostType } from '../../state/types';
-import { Link, useHistory } from 'react-router-dom';
-import Button from '../../elements/button';
+import { Link } from 'react-router-dom';
 
 type Props = {
-    post: PostType
+    post: PostType,
+    tagId?: string
 }
 
 export default class Post extends React.Component<Props, {}> {
@@ -18,7 +18,7 @@ export default class Post extends React.Component<Props, {}> {
         super(props);
     }
     render() {
-        const {post} = this.props;
+        const {post, tagId} = this.props;
         return <div className="mb-60">
             <Heading
                 classNames={'pb-30'}
@@ -38,6 +38,7 @@ export default class Post extends React.Component<Props, {}> {
             <SubSection className={'mb-30'} style={{marginTop: '-1px'}}>
                 {post.tags.map((tag, key) => {
                     return  <Tag
+                        className={tagId && tagId == tag.slug ? 'active' : ''}
                         key={key}
                         text={tag.title}
                         url={`/tags/${tag.slug}`}

@@ -7,3 +7,6 @@ export const GET_POSTS_FAILED = () => ({ type: 'GET_POSTS_FAILED'});
 export const SEARCH_POSTS_REQUEST = (query: string) => ({ type: 'SEARCH_POSTS_REQUEST', payload: query});
 export const SEARCH_POSTS_SUCCESS = (posts: any) => ({ type: 'SEARCH_POSTS_SUCCESS', payload: posts});
 export const SEARCH_POSTS_FAILED = () => ({ type: 'SEARCH_POSTS_FAILED'});
+
+export const GET_POSTS_BY_TAG_REQUEST = (tag: number | undefined, page: number | undefined) => ({ type: 'GET_POSTS_BY_TAG_REQUEST', payload: {tag, page}});
+export const GET_POSTS_BY_TAG_FAILED = () => ({ type: 'GET_POSTS_BY_TAG_FAILED'});

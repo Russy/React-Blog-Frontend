@@ -8,6 +8,7 @@ import {
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Post from './pages/Post';
+import Tags from './pages/Tags';
 
 export default function App() {
     return (
@@ -19,6 +20,12 @@ export default function App() {
                     </Route>
                     <Route path="/post/:slug">
                         <Post/>
+                    </Route>
+                    <Route path="/tags/:slug/page/:page">
+                        <Tags/>
+                    </Route>
+                    <Route path="/tags/:slug">
+                        <Tags/>
                     </Route>
                     <Route path="/page/:page">
                         <Home/>

@@ -20,7 +20,17 @@ function* search(action) {
     }
 }
 
+function* fetchPostsByTags(action) {
+    try {
+        const posts = yield call(Api.getPostsByTags, action.payload);
+        yield put(actions.GET_POSTS_SUCCESS(posts));
+    } catch (e) {
+        // yield put({type: "USER_FETCH_FAILED", message: e.message});
+    }
+}
+
 export function* postsSaga() {
     yield takeLatest('GET_POSTS_REQUEST', fetchPosts);
     yield takeLatest('SEARCH_POSTS_REQUEST', search);
+    yield takeLatest('GET_POSTS_BY_TAG_REQUEST', fetchPostsByTags);
 }
