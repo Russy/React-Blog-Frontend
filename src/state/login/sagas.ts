@@ -8,7 +8,7 @@ function* login(action) {
         const response = yield call(Api.login, action.payload);
         yield put(actions.GET_LOGIN_SUCCESS());
         Storage.set('token',  "Bearer " + response.success.token);
-        document.location.href = '/';
+        document.location.href = '/admin';
     } catch(e) {
         yield put(actions.GET_LOGIN_FAILED(e.message));
     }

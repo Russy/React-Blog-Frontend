@@ -17,6 +17,7 @@ export default class Post extends React.Component<Props, {}> {
     constructor(props) {
         super(props);
     }
+
     render() {
         const {post, tagId} = this.props;
         return <div className="mb-60">
@@ -30,14 +31,16 @@ export default class Post extends React.Component<Props, {}> {
                     />
                 }
             >
-                {post.title}
+                <Link to={`/post/${post.slug}`}>{post.title} </Link>
             </Heading>
+
             <SubSection>
                 Posted at: {moment(post.updated_at).format('D/MM/YYYY')}
             </SubSection>
+
             <SubSection className={'mb-30'} style={{marginTop: '-1px'}}>
                 {post.tags ? post.tags.map((tag, key) => {
-                    return  <Tag
+                    return <Tag
                         className={tagId && tagId == tag.slug ? 'active' : ''}
                         key={key}
                         text={tag.title}
@@ -49,7 +52,7 @@ export default class Post extends React.Component<Props, {}> {
                 {post.excerpt}...
             </Paragraph>
 
-            <Link className={"button primary"} to={`/post/${post.slug}`}>
+            <Link className={'button primary'} to={`/post/${post.slug}`}>
                 Read More
             </Link>
 

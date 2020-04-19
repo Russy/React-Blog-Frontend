@@ -9,6 +9,11 @@ export const posts = (state: PostsStoreState = defaultState, {type, payload}) =>
                 ...state,
                 is_fetching: true
             };
+        case 'GET_ADMIN_POSTS_REQUEST':
+            return {
+                ...state,
+                is_fetching: true
+            };
         case 'GET_POSTS_BY_TAG_REQUEST':
             return {
                 ...state,

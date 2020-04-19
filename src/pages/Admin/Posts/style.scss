@@ -1,0 +1,30 @@
+.admin-post {
+  display: flex;
+  margin-bottom: 30px;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-bottom: 1px solid #cccccc;
+  &:first-child {
+    margin-bottom: 0;
+  }
+  &__id {
+    width: 5%;
+  }
+  &__title {
+    width: 20%;
+  }
+  &__slug {
+    width: 20%;
+  }
+  &__exception {
+    width: 50%;
+  }
+  &__published {
+    width: 10%;
+  }
+  &__controls {
+    width: 15%;
+  }
+}

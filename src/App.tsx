@@ -3,10 +3,9 @@ import './App.scss';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
+} from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
 import Post from './pages/Post';
 import Tags from './pages/Tags';
 import Login from './pages/Login';
@@ -21,7 +20,7 @@ const routes = [
     }, {
         path: '/post/:slug',
         is_private: false,
-        component:  <Post/>
+        component: <Post/>
     }, {
         path: '/tags/:slug/page/:page',
         is_private: false,
@@ -29,24 +28,26 @@ const routes = [
     }, {
         path: '/tags/:slug',
         is_private: false,
-        component:  <Tags/>
+        component: <Tags/>
     }, {
         path: '/page/:page',
         is_private: false,
-        component:   <Home/>
+        component: <Home/>
     }, {
         path: '/search/:query',
         is_private: false,
-        component:   <Home/>
+        component: <Home/>
     }, {
-        path: '/Login',
+        path: '/login',
         is_private: false,
-        component:  <Login/>
-    }, {
-        path: '/admin',
+        component: <Login/>
+    },
+    {
+        path: '/admin/page/:page',
         is_private: true,
         component: <Posts/>
-    }, {
+    }
+    , {
         path: '/admin/post/:id',
         is_private: true,
         component: <Posts/>
@@ -62,6 +63,11 @@ const routes = [
         path: '/admin/settings',
         is_private: true,
         component: <Posts/>
+    },
+    {
+        path: '/admin',
+        is_private: true,
+        component: <Posts/>
     }, {
         path: '/',
         is_private: false,
@@ -75,13 +81,13 @@ export default function App() {
             <Router>
                 <Switch>
                     {routes.map((route, key) => {
-                       return   <PrivateRouter
-                           key={key}
-                           isPrivate={route.is_private}
-                           path={route.path}
-                       >
-                           {route.component}
-                       </PrivateRouter>
+                        return <PrivateRouter
+                            key={key}
+                            isPrivate={route.is_private}
+                            path={route.path}
+                        >
+                            {route.component}
+                        </PrivateRouter>;
                     })}
                 </Switch>
             </Router>
