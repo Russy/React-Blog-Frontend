@@ -36,14 +36,14 @@ export default class Post extends React.Component<Props, {}> {
                 Posted at: {moment(post.updated_at).format('D/MM/YYYY')}
             </SubSection>
             <SubSection className={'mb-30'} style={{marginTop: '-1px'}}>
-                {post.tags.map((tag, key) => {
+                {post.tags ? post.tags.map((tag, key) => {
                     return  <Tag
                         className={tagId && tagId == tag.slug ? 'active' : ''}
                         key={key}
                         text={tag.title}
                         url={`/tags/${tag.slug}`}
                     />;
-                })}
+                }) : ''}
             </SubSection>
             <Paragraph>
                 {post.excerpt}...
