@@ -20,5 +20,15 @@ export const Api = {
     searchPosts: async (query: string) => {
         const response = await HTTPClient.post(`${endpoint}/search`, {query});
         return response.data;
+    },
+    admin: {
+        getPosts: async (page: string = '1') => {
+            const response = await HTTPClient.get(`${endpoint}/admin/posts?page=${page}`);
+            return response.data;
+        },
+        getPost: async (slug: string) => {
+            const response = await HTTPClient.get(`${endpoint}/admin/post/${slug}`);
+            return response.data;
+        },
     }
 };
