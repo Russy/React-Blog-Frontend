@@ -41,7 +41,7 @@ function Posts(props: Props) {
                     >
                         <Link
                             className={'button primary mb-20'}
-                            to={'/admin/post/'}
+                            to={'/admin/post/new'}
                         >New Post</Link>
 
                         <div className={'admin-post'}>

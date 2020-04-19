@@ -11,6 +11,7 @@ import Tags from './pages/Tags';
 import Login from './pages/Login';
 import Posts from './pages/Admin/Posts';
 import PrivateRouter from './libs/PrivateRouter';
+import EditPost from './pages/Admin/EditPost';
 
 const routes = [
     {
@@ -50,7 +51,7 @@ const routes = [
     , {
         path: '/admin/post/:id',
         is_private: true,
-        component: <Posts/>
+        component: <EditPost/>
     }, {
         path: '/admin/pages',
         is_private: true,
