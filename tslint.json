@@ -1,6 +1,9 @@
 {
   "extends": ["tslint-react", "tslint-config-prettier"],
+  "plugins": ["react-hooks"],
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn", // <--- THIS IS THE NEW RULE
     "align": [true, "parameters", "statements"],
     "ban": false,
     "class-name": true,

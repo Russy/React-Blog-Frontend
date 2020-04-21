@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './style.scss';
 import { connect } from 'react-redux';
 import Container from '../../../elements/container';
-import FullWidthLayout from '../../../elements/FullWidthLayout';
 import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
 import { PostType, StoreState } from '../../../state/types';
 import { getIsFetching, getPost } from '../../../state/post/selectors';
 import { GET_EDIT_POST_REQUEST } from '../../../state/post/actions';
 import { useParams } from 'react-router-dom';
-
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import Heading from '../../../elements/heading';
+import SidebarLayout from '../../../elements/sidebarLayout';
+import Textarea from './components/Textarea';
+import Button from '../../../elements/button';
 
 type Props = {
     getPost: (slug: string) => void;
@@ -23,36 +21,72 @@ type Props = {
 function EditPost(props: Props) {
 
     const [post, setPost] = useState(props.post);
+
     let {id} = useParams();
 
     useEffect(() => {
-       props.getPost(id);
-       setPost(props.post);
+        props.getPost(id);
+        setPost(props.post);
     }, [props.post.id]);
 
 
     return <Layout>
         <Container>
-            <FullWidthLayout>
+            <SidebarLayout
+                sidebar={<>
+                    test
+                </>}
+            >
                 <WithPreloader
-                    isLoading={false}
+                    className={'mb-80'}
+                    isLoading={props.isFetching}
                 >
-                    <Heading size={'small'}>Content</Heading>
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data={post.content}
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            setPost({
-                                ...post,
-                                content: data
-                            });
-                        } }
+                   <Textarea
+                        name={'excerpt'}
+                        title={'Excerpt'}
+                        content={post.excerpt}
+                        onChange={(excerpt) => {
+                            if (post.id) {
+                                setPost({
+                                    ...post,
+                                    excerpt
+                                });
+
+                            }
+
+                        }}
                     />
+
+                    <Textarea
+                        title={'Content'}
+                        content={post.content}
+                        className={'mt-60 mb-30'}
+                        name={'content'}
+                        onChange={(content) => {
+                            if (post.id) {
+                                setPost({
+                                    ...post,
+                                    content
+                                });
+                            }
+                        }}
+                    />
+
+                    <Button
+                        type={'primary'}
+                        onClick={() => {
+                            console.log(post);
+                        }}
+                    >
+                        Save
+                    </Button>
 
 
                 </WithPreloader>
-            </FullWidthLayout>
+
+            </SidebarLayout>
+
+
         </Container>
     </Layout>;
 }
