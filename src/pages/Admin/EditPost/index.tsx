@@ -13,6 +13,8 @@ import Textarea from './components/Textarea';
 import Button from '../../../elements/button';
 import Input from '../../../elements/Input';
 import Heading from '../../../elements/heading';
+import Status from './components/Status';
+import Tags from './components/Tags';
 
 type Props = {
     getPost: (slug: string) => void;
@@ -37,7 +39,25 @@ function EditPost(props: Props) {
         <Container>
             <SidebarLayout
                 sidebar={<>
-                    test
+
+                    <Status
+                        status={post.is_published}
+                        onSelect={(is_published) => {
+                            setPost({
+                                ...post,
+                                is_published
+                            });
+                        }}
+                    />
+                    <Tags
+                        postTags={post.tags}
+                        onChange={(tags) => {
+                            setPost({
+                                ...post,
+                                tags
+                            });
+                        }}
+                    />
                 </>}
             >
                 <WithPreloader
@@ -45,6 +65,7 @@ function EditPost(props: Props) {
                     isLoading={props.isFetching}
                 >
                     <Heading
+                        classNames={'mb-10'}
                         size={'small'}
                     >Title</Heading>
                     <Input
@@ -65,7 +86,7 @@ function EditPost(props: Props) {
                         title={'Excerpt'}
                         content={post.excerpt ? post.excerpt : ''}
                         onChange={(excerpt) => {
-                            if (post.id) {
+                            if (post.id || id === 'new') {
                                 setPost({
                                     ...post,
                                     excerpt
@@ -80,7 +101,7 @@ function EditPost(props: Props) {
                         className={'mt-40 mb-30'}
                         name={'content'}
                         onChange={(content) => {
-                            if (post.id) {
+                            if (post.id || id === 'new') {
                                 setPost({
                                     ...post,
                                     content

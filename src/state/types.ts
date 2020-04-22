@@ -1,11 +1,13 @@
 import { PostsStoreState } from './posts/state';
 import { PostStoreState } from './post/state';
 import { LoginStoreState } from './login/state';
+import { TagsStoreState } from './tags/state';
 
 export interface StoreState {
     readonly posts: PostsStoreState;
     readonly post: PostStoreState;
     readonly login: LoginStoreState;
+    readonly tags: TagsStoreState;
 }
 
 export type TagType = {

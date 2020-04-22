@@ -80,7 +80,7 @@ function Posts(props: Props) {
                                 <div className="admin-post__exception">
                                     <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                                 </div>
-                                <div className="admin-post__published">
+                                <div className="admin-post__published text-center">
                                     {post.is_published}
                                 </div>
                                 <div className="admin-post__controls">

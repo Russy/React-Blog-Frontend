@@ -80,7 +80,6 @@ function Post(props: Props) {
                         shortname='example'
                         config={config}
                     />
-
                 </WithPreloader>
 
             </SidebarLayout>

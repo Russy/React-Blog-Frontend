@@ -15,7 +15,7 @@ type Props = {
 
 export default function Textarea(props: Props) {
     return <div className={`textarea-wrap mb-10 ${props.className ? props.className : ''}`}>
-        <Heading size={'small'}>{props.title}</Heading>
+        <Heading size={'small'} classNames={'mb-10'}>{props.title}</Heading>
         <CKEditor
             editor={ClassicEditor}
             data={props.content}
