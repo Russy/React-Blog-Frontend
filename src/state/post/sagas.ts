@@ -12,7 +12,14 @@ function* fetchEditPost(action) {
     yield put(actions.GET_POST_SUCCESS(post));
 }
 
+function* postEditPost(action) {
+    const post = yield call(Api.admin.updatePost, action.payload);
+    yield put(actions.POST_EDIT_POST_SUCCESS(post));
+    document.location.href = '/admin';
+}
+
 export function* postSaga() {
     yield takeLatest('GET_POST_REQUEST', fetchPost);
     yield takeLatest('GET_EDIT_POST_REQUEST', fetchEditPost);
+    yield takeLatest('POST_EDIT_POST_REQUEST', postEditPost);
 }

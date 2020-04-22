@@ -10,6 +10,7 @@ import { getIsFetching, getPagination, getPosts } from '../../../state/posts/sel
 import { Link, useParams } from 'react-router-dom';
 import Pagination from './components/Pagination';
 import WithPreloader from '../../../components/WithPreloader';
+import Paragraph from '../../../elements/paragaph';
 
 type Props = {
     posts: PostType[],
@@ -77,7 +78,7 @@ function Posts(props: Props) {
                                     {post.slug}
                                 </div>
                                 <div className="admin-post__exception">
-                                    {post.excerpt}
+                                    <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                                 </div>
                                 <div className="admin-post__published">
                                     {post.is_published}

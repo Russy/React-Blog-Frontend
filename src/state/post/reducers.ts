@@ -13,6 +13,16 @@ export const post = (state: PostStoreState = defaultState, {type, payload}) => {
                 ...state,
                 is_fetching: true
             };
+            case 'POST_EDIT_POST_REQUEST':
+            return {
+                ...state,
+                is_fetching: true
+            };
+            case 'POST_EDIT_POST_SUCCESS':
+            return {
+                ...state,
+                is_fetching: false
+            };
         case 'GET_POST_SUCCESS':
             return {
                 ...state,

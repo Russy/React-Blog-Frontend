@@ -5,12 +5,14 @@ type Props = {
     name: string,
     placeholder: string,
     onChange: (event) => void,
-    className?: string
+    className?: string,
+    value?: string
 }
 
 export default function Input(props: Props) {
     return <input
             {...props}
             className={`input ${props.className}`}
+            value={props.value ? props.value : ''}
         />;
 }

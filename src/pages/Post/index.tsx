@@ -72,7 +72,7 @@ function Post(props: Props) {
                         })}
                     </SubSection>
                     <Paragraph>
-                        {post.content}
+                        <div dangerouslySetInnerHTML={{ __html: post.content }} />
                     </Paragraph>
 
 

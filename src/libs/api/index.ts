@@ -1,4 +1,5 @@
 import HTTPClient from '../HTTPClient';
+import { PostType } from '../../state/types';
 
 const endpoint = process.env.REACT_APP_API_URL;
 export const Api = {
@@ -28,6 +29,10 @@ export const Api = {
         },
         getPost: async (slug: string) => {
             const response = await HTTPClient.get(`${endpoint}/admin/post/${slug}`);
+            return response.data;
+        },
+        updatePost: async (post: PostType) => {
+            const response = await HTTPClient.post(`${endpoint}/admin/post/update`, post);
             return response.data;
         },
     }

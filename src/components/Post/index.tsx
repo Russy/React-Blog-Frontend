@@ -49,7 +49,7 @@ export default class Post extends React.Component<Props, {}> {
                 }) : ''}
             </SubSection>
             <Paragraph>
-                {post.excerpt}...
+                <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
             </Paragraph>
 
             <Link className={'button primary'} to={`/post/${post.slug}`}>

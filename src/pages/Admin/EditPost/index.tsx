@@ -6,14 +6,17 @@ import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
 import { PostType, StoreState } from '../../../state/types';
 import { getIsFetching, getPost } from '../../../state/post/selectors';
-import { GET_EDIT_POST_REQUEST } from '../../../state/post/actions';
+import { GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST } from '../../../state/post/actions';
 import { useParams } from 'react-router-dom';
 import SidebarLayout from '../../../elements/sidebarLayout';
 import Textarea from './components/Textarea';
 import Button from '../../../elements/button';
+import Input from '../../../elements/Input';
+import Heading from '../../../elements/heading';
 
 type Props = {
     getPost: (slug: string) => void;
+    updatePost: (post: PostType) => void;
     post: PostType,
     isFetching: boolean
 };
@@ -41,26 +44,40 @@ function EditPost(props: Props) {
                     className={'mb-80'}
                     isLoading={props.isFetching}
                 >
-                   <Textarea
+                    <Heading
+                        size={'small'}
+                    >Title</Heading>
+                    <Input
+                        className={'mb-40'}
+                        type={'text'}
+                        placeholder={'Title'}
+                        name={'title'}
+                        value={post.title}
+                        onChange={(e) => {
+                            setPost({
+                                ...post,
+                                title: e.target.value
+                            });
+                        }}
+                    />
+                    <Textarea
                         name={'excerpt'}
                         title={'Excerpt'}
-                        content={post.excerpt}
+                        content={post.excerpt ? post.excerpt : ''}
                         onChange={(excerpt) => {
                             if (post.id) {
                                 setPost({
                                     ...post,
                                     excerpt
                                 });
-
                             }
-
                         }}
                     />
 
                     <Textarea
                         title={'Content'}
-                        content={post.content}
-                        className={'mt-60 mb-30'}
+                        content={post.content ? post.content : ''}
+                        className={'mt-40 mb-30'}
                         name={'content'}
                         onChange={(content) => {
                             if (post.id) {
@@ -75,17 +92,15 @@ function EditPost(props: Props) {
                     <Button
                         type={'primary'}
                         onClick={() => {
-                            console.log(post);
+                            props.updatePost(post);
                         }}
                     >
                         Save
                     </Button>
 
-
                 </WithPreloader>
 
             </SidebarLayout>
-
 
         </Container>
     </Layout>;
@@ -95,6 +110,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getPost: (slug: string) => {
             dispatch(GET_EDIT_POST_REQUEST(slug));
+        },
+        updatePost: (post: PostType) => {
+            dispatch(POST_EDIT_POST_REQUEST(post));
         }
     };
 };

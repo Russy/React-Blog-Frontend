@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function Paragraph({className, children}: Props) {
-    return <p className={`${className ? className : ''} paragraph `}>
+    return <div className={`${className ? className : ''} paragraph `}>
         {children}
-    </p>;
+    </div>;
 }
