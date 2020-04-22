@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-basic-styles": "^18.0.0",
-    "@ckeditor/ckeditor5-build-classic": "^18.0.0",
+    "@ckeditor/ckeditor5-build-classic": "git@github.com:Russy/ckeditor5-build-classic.git",
     "@ckeditor/ckeditor5-code-block": "^18.0.0",
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "@testing-library/jest-dom": "^4.2.4",

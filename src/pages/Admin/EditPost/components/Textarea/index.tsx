@@ -2,9 +2,8 @@ import React from 'react';
 import Heading from '../../../../../elements/heading';
 import './style.scss';
 
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CKEditor from '@ckeditor/ckeditor5-react';
-
-declare var ClassicEditor: any;
 
 type Props = {
     className?: string;
