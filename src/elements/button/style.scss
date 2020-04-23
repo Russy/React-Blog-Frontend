@@ -15,4 +15,16 @@
       background-color: lighten(#82b541, 10);
     }
   }
+
+  &.warning {
+    color: #76161f;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 5px 7px;
+    &:hover {
+      background-color: darken(#f5c6cb, 10);
+    }
+  }
 }

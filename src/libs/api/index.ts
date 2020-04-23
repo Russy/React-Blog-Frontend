@@ -35,9 +35,14 @@ export const Api = {
             const response = await HTTPClient.post(`${endpoint}/admin/post/update`, post);
             return response.data;
         },
-
         getTags: async () => {
             return await HTTPClient.get(`${endpoint}/admin/tags`);
+        },
+        postTag: async (tag) => {
+            return await HTTPClient.post(`${endpoint}/admin/tag/update`, {title: tag});
+        },
+        deleteTag: async (id) => {
+            return await HTTPClient.get(`${endpoint}/admin/tag/delete/${id}`);
         },
     }
 };

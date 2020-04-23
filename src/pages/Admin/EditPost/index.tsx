@@ -34,6 +34,9 @@ function EditPost(props: Props) {
         setPost(props.post);
     }, [props.post.id]);
 
+    useEffect(() => {
+        console.log(post);
+    }, [post]);
 
     return <Layout>
         <Container>
@@ -49,6 +52,7 @@ function EditPost(props: Props) {
                             });
                         }}
                     />
+
                     <Tags
                         postTags={post.tags}
                         onChange={(tags) => {

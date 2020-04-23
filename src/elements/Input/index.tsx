@@ -2,11 +2,12 @@ import React from 'react';
 import './style.scss';
 type Props = {
     type: 'text' | 'password',
-    name: string,
-    placeholder: string,
-    onChange: (event) => void,
+    name?: string,
+    placeholder?: string,
+    onChange?: (event) => void,
     className?: string,
-    value?: string
+    value?: string,
+    onKeyUp?: (e) => void
 }
 
 export default function Input(props: Props) {

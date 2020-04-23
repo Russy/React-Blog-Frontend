@@ -2,7 +2,7 @@ import * as React from 'react';
 import './style.scss';
 
 type Props = {
-    type: 'primary' | 'secondary',
+    type: 'primary' | 'secondary' | 'warning',
 
     onClick: () => void
 };
