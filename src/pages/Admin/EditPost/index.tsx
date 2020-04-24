@@ -38,7 +38,6 @@ function EditPost(props: Props) {
         setPost(props.post);
     }, [props.post]);
 
-
     return <Layout>
         <Container>
             <SidebarLayout
