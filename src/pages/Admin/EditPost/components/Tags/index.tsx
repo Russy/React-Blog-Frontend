@@ -31,7 +31,6 @@ function Tags(props: Props) {
     //Setting selected post tags
     useEffect(() => {
         setTags(props.postTags);
-        console.log('test');
     }, [props.tags, props.postTags]);
 
     return <div className={'tags'}>
