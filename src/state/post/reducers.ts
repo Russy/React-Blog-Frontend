@@ -1,5 +1,6 @@
 import defaultState, { PostStoreState } from './state';
 import * as action from './actions';
+import ts from 'typescript/lib/tsserverlibrary';
 
 export const post = (state: PostStoreState = defaultState, {type, payload}) => {
     switch (type) {
@@ -28,6 +29,20 @@ export const post = (state: PostStoreState = defaultState, {type, payload}) => {
                 ...state,
                 post: payload,
                 is_fetching: false
+            };
+        case 'CLEAR_POST_REQUEST':
+            return {
+                ...state,
+                post: defaultState.post,
+                is_fetching: false
+            };
+        case 'DELETE_TAG_REQUEST':
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    tags: state.post.tags.filter(tag => tag.id !== payload)
+                }
             };
         default:
             return state;

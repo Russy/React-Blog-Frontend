@@ -10,3 +10,5 @@ export const GET_EDIT_POST_FAILED = () => ({ type: 'GET_EDIT_POST_FAILED'});
 export const POST_EDIT_POST_REQUEST = (post: PostType) => ({ type: 'POST_EDIT_POST_REQUEST', payload: post});
 export const POST_EDIT_POST_SUCCESS = (post: PostType) => ({ type: 'POST_EDIT_POST_SUCCESS', payload: post});
 export const POST_EDIT_POST_FAILED = () => ({ type: 'POST_EDIT_POST_FAILED'});
+
+export const CLEAR_POST_REQUEST = () => ({ type: 'CLEAR_POST_REQUEST'});

@@ -6,7 +6,7 @@ import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
 import { PostType, StoreState } from '../../../state/types';
 import { getIsFetching, getPost } from '../../../state/post/selectors';
-import { GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST } from '../../../state/post/actions';
+import { CLEAR_POST_REQUEST, GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST } from '../../../state/post/actions';
 import { useParams } from 'react-router-dom';
 import SidebarLayout from '../../../elements/sidebarLayout';
 import Textarea from './components/Textarea';
@@ -20,7 +20,8 @@ type Props = {
     getPost: (slug: string) => void;
     updatePost: (post: PostType) => void;
     post: PostType,
-    isFetching: boolean
+    isFetching: boolean,
+    clearPost: () => void
 };
 
 function EditPost(props: Props) {
@@ -31,12 +32,12 @@ function EditPost(props: Props) {
 
     useEffect(() => {
         props.getPost(id);
-        setPost(props.post);
-    }, [props.post.id]);
+    }, []);
 
     useEffect(() => {
-        console.log(post);
-    }, [post]);
+        setPost(props.post);
+    }, [props.post]);
+
 
     return <Layout>
         <Container>
@@ -55,11 +56,19 @@ function EditPost(props: Props) {
 
                     <Tags
                         postTags={post.tags}
-                        onChange={(tags) => {
-                            setPost({
-                                ...post,
-                                tags
-                            });
+                        onChange={(tag, checked) => {
+                            if (checked) {
+                                setPost({
+                                    ...post,
+                                    tags: [...post.tags, tag]
+                                });
+                            } else {
+                                setPost({
+                                    ...post,
+                                    tags: post.tags.filter(_tag => _tag.id !== tag.id)
+                                });
+                            }
+
                         }}
                     />
                 </>}
@@ -138,6 +147,9 @@ const mapDispatchToProps = dispatch => {
         },
         updatePost: (post: PostType) => {
             dispatch(POST_EDIT_POST_REQUEST(post));
+        },
+        clearPost: () => {
+            dispatch(CLEAR_POST_REQUEST());
         }
     };
 };

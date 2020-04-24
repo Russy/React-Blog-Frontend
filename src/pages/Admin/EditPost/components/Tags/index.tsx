@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './style.scss';
 import { connect } from 'react-redux';
 import { DELETE_TAG_REQUEST, GET_TAGS_REQUEST, POST_TAGS_REQUEST } from '../../../../../state/tags/actions';
@@ -13,7 +13,7 @@ type Props = {
     postTags: TagType[],
     tags: TagType[],
     getTags: () => void,
-    onChange: (tags: TagType[]) => void,
+    onChange: (tags: TagType, checked: boolean) => void,
     postTag: (tag: string) => void,
     deleteTag: (tagId: number) => void,
 };
@@ -31,12 +31,8 @@ function Tags(props: Props) {
     //Setting selected post tags
     useEffect(() => {
         setTags(props.postTags);
+        console.log('test');
     }, [props.tags, props.postTags]);
-
-    //Click on tag
-    useEffect(() => {
-        props.onChange(tags);
-    }, [tags]);
 
     return <div className={'tags'}>
         <Heading
@@ -51,22 +47,9 @@ function Tags(props: Props) {
                     <input
                         id={`tag-${tag.id}`}
                         type="checkbox"
-
                         checked={tags.map(tag => tag.id).indexOf(tag.id) !== -1}
-
                         onChange={(e) => {
-                            if (e.currentTarget.checked) {
-                                setTags([
-                                    ...tags,
-                                    tag
-                                ]);
-                            } else {
-                                setTags([
-                                    ...tags.filter((tg) => {
-                                        return tg.id !== tag.id;
-                                    })
-                                ]);
-                            }
+                            props.onChange(tag, e.currentTarget.checked);
                         }}
                     />
                     {tag.title}
