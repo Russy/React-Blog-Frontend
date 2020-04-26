@@ -13,6 +13,11 @@ export default function Icons(props: Props) {
         'fa fa-gamepad',
         'fa fa-credit-card-alt',
         'fa fa-reddit',
+        'fa fa-gift',
+        'fa fa-youtube-square',
+        'fa fa-steam-square',
+        'fa fa-reddit',
+        'fa fa-html5',
     ];
     return <div className={'icons'}>
         <Heading

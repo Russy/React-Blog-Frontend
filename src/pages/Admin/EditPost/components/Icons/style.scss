@@ -28,6 +28,13 @@
       height: 48px;
       display: block;
       cursor: pointer;
+      transition: all .3s;
+    }
+
+    &:hover {
+      label {
+        background: #dedede;
+      }
     }
   }
 
