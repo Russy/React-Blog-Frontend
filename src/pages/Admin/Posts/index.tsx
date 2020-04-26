@@ -50,6 +50,9 @@ function Posts(props: Props) {
                                 <strong>ID</strong>
                             </div>
                             <div className="admin-post__title">
+                                <strong>Icon</strong>
+                            </div>
+                            <div className="admin-post__title">
                                 <strong>Title</strong>
                             </div>
                             <div className="admin-post__slug">
@@ -70,6 +73,11 @@ function Posts(props: Props) {
                             return <div key={key} className={'admin-post'}>
                                 <div className="admin-post__id">
                                     {post.id}
+                                </div>
+                                <div className="admin-post__icon">
+                                    <div className={'icon-container'}>
+                                        <span className={post.icon}/>
+                                    </div>
                                 </div>
                                 <div className="admin-post__title">
                                     {post.title}
