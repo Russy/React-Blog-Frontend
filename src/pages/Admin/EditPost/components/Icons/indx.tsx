@@ -16,7 +16,6 @@ export default function Icons(props: Props) {
         'fa fa-gift',
         'fa fa-youtube-square',
         'fa fa-steam-square',
-        'fa fa-reddit',
         'fa fa-html5',
     ];
     return <div className={'icons'}>
