@@ -15,6 +15,7 @@ import Input from '../../../elements/Input';
 import Heading from '../../../elements/heading';
 import Status from './components/Status';
 import Tags from './components/Tags';
+import Icons from './components/Icons/indx';
 
 type Props = {
     getPost: (slug: string) => void;
@@ -31,7 +32,8 @@ function EditPost(props: Props) {
     let {id} = useParams();
 
     useEffect(() => {
-        props.getPost(id);
+        if (id != 'new')
+            props.getPost(id);
     }, []);
 
     useEffect(() => {
@@ -68,6 +70,16 @@ function EditPost(props: Props) {
                                 });
                             }
 
+                        }}
+                    />
+
+                    <Icons
+                        icon={post.icon}
+                        onChange={(icon) => {
+                            setPost({
+                                ...post,
+                                icon
+                            });
                         }}
                     />
                 </>}
