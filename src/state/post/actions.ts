@@ -12,3 +12,5 @@ export const POST_EDIT_POST_SUCCESS = (post: PostType) => ({ type: 'POST_EDIT_PO
 export const POST_EDIT_POST_FAILED = () => ({ type: 'POST_EDIT_POST_FAILED'});
 
 export const CLEAR_POST_REQUEST = () => ({ type: 'CLEAR_POST_REQUEST'});
+
+export const GET_EMPTY_POST_REQUEST = () => ({ type: 'GET_EMPTY_POST_REQUEST'});

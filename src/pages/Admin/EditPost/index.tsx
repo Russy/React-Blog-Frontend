@@ -6,7 +6,7 @@ import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
 import { PostType, StoreState } from '../../../state/types';
 import { getIsFetching, getPost } from '../../../state/post/selectors';
-import { CLEAR_POST_REQUEST, GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST } from '../../../state/post/actions';
+import { CLEAR_POST_REQUEST, GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST, GET_EMPTY_POST_REQUEST } from '../../../state/post/actions';
 import { useParams } from 'react-router-dom';
 import SidebarLayout from '../../../elements/sidebarLayout';
 import Textarea from './components/Textarea';
@@ -19,6 +19,7 @@ import Icons from './components/Icons/indx';
 
 type Props = {
     getPost: (slug: string) => void;
+    getEmptyPost: () => void;
     updatePost: (post: PostType) => void;
     post: PostType,
     isFetching: boolean,
@@ -32,8 +33,11 @@ function EditPost(props: Props) {
     let {id} = useParams();
 
     useEffect(() => {
-        if (id != 'new')
+        if (id != 'new') {
             props.getPost(id);
+        } else {
+            props.getEmptyPost();
+        }
     }, []);
 
     useEffect(() => {
@@ -155,6 +159,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getPost: (slug: string) => {
             dispatch(GET_EDIT_POST_REQUEST(slug));
+        },
+        getEmptyPost: () => {
+            dispatch(GET_EMPTY_POST_REQUEST());
         },
         updatePost: (post: PostType) => {
             dispatch(POST_EDIT_POST_REQUEST(post));

@@ -6,21 +6,23 @@ export type PostStoreState = {
     post: PostType,
 };
 
+export const emptyPost =  {
+    id: 0,
+    title: '',
+    content: '',
+    excerpt: '',
+    icon: '',
+    slug: '',
+    is_published: 0,
+    updated_at: '',
+    tags: [],
+    categories: []
+}
+
 const defaultState: PostStoreState = {
     is_fetching: false,
     errors: [],
-    post: {
-        id: 0,
-        title: '',
-        content: '',
-        excerpt: '',
-        icon: '',
-        slug: '',
-        is_published: 0,
-        updated_at: '',
-        tags: [],
-        categories: []
-    }
+    post: emptyPost
 };
 
 export default defaultState;

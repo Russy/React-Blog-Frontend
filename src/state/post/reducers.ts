@@ -1,4 +1,4 @@
-import defaultState, { PostStoreState } from './state';
+import defaultState, { emptyPost, PostStoreState } from './state';
 import * as action from './actions';
 import ts from 'typescript/lib/tsserverlibrary';
 
@@ -28,6 +28,12 @@ export const post = (state: PostStoreState = defaultState, {type, payload}) => {
             return {
                 ...state,
                 post: payload,
+                is_fetching: false
+            };
+        case 'GET_EMPTY_POST_REQUEST':
+            return {
+                ...state,
+                post: emptyPost,
                 is_fetching: false
             };
         case 'CLEAR_POST_REQUEST':
