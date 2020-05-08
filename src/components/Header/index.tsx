@@ -9,6 +9,7 @@ import Logo from './components/logo';
 import Button from '../../elements/button';
 import { Link } from 'react-router-dom';
 import { Storage } from '../../libs/storage';
+import AdminMenu from './components/adminMenu';
 
 type Props = {};
 
@@ -53,6 +54,10 @@ export default function Header() {
                 </div>
             </Container>
         </div>
-        <Separator/>
+        { token
+            ?
+            <AdminMenu /> :
+            <Separator/>
+        }
     </div>;
 }

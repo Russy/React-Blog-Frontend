@@ -41,6 +41,7 @@ function Login(props: Props) {
                         name={'login'}
                         placeholder={'Login'}
                         className={'mb-20'}
+                        value={login}
                         onChange={(event) => {
                             setLogin(event.target.value);
                         }}
@@ -49,6 +50,7 @@ function Login(props: Props) {
                         type={'password'}
                         name={'password'}
                         placeholder={'Password'}
+                        value={password}
                         onChange={(event) => {
                             setPassword(event.target.value);
                         }}
