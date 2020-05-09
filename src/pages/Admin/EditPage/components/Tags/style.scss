@@ -1,0 +1,21 @@
+.tags {
+  width: 100%;
+  background: #fafafa;
+  padding: 20px 20px 20px;
+  border: 1px solid #c4c4c4;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  label {
+    cursor: pointer;
+    display: inline-block;
+  }
+  input {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .single-tag {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

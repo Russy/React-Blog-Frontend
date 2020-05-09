@@ -3,6 +3,8 @@ import { postsSaga } from './posts/sagas';
 import { postSaga } from './post/sagas';
 import { loginSaga } from './login/sagas';
 import { tagsSaga } from './tags/sagas';
+import { pagesSaga } from './pages/sagas';
+import { pageSaga } from './page/sagas';
 
 function* rootSaga() {
     yield fork(postsSaga);
@@ -10,6 +12,8 @@ function* rootSaga() {
     yield fork(loginSaga);
     yield fork(loginSaga);
     yield fork(tagsSaga);
+    yield fork(pagesSaga);
+    yield fork(pageSaga);
 }
 
 export default rootSaga;

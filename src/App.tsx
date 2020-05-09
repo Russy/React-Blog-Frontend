@@ -12,6 +12,8 @@ import Login from './pages/Login';
 import Posts from './pages/Admin/Posts';
 import PrivateRouter from './libs/PrivateRouter';
 import EditPost from './pages/Admin/EditPost';
+import Pages from './pages/Admin/Pages';
+import EditPage from './pages/Admin/EditPage';
 
 const routes = [
     {
@@ -55,11 +57,11 @@ const routes = [
     }, {
         path: '/admin/pages',
         is_private: true,
-        component: <Posts/>
+        component: <Pages/>
     }, {
         path: '/admin/page/:id',
         is_private: true,
-        component: <Posts/>
+        component: <EditPage/>
     }, {
         path: '/admin/settings',
         is_private: true,

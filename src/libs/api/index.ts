@@ -22,6 +22,14 @@ export const Api = {
         const response = await HTTPClient.post(`${endpoint}/search`, {query});
         return response.data;
     },
+    getPages: async (page: string = '1') => {
+        const response = await HTTPClient.get(`${endpoint}/pages?page=${page}`);
+        return response.data;
+    },
+    getPage: async (slug: string) => {
+        const response = await HTTPClient.get(`${endpoint}/page/${slug}`);
+        return response.data;
+    },
     admin: {
         getPosts: async (page: string = '1') => {
             const response = await HTTPClient.get(`${endpoint}/admin/posts?page=${page}`);
@@ -43,6 +51,19 @@ export const Api = {
         },
         deleteTag: async (id) => {
             return await HTTPClient.get(`${endpoint}/admin/tag/delete/${id}`);
+        },
+
+        getPages: async (page: string = '1') => {
+            const response = await HTTPClient.get(`${endpoint}/admin/pages?page=${page}`);
+            return response.data;
+        },
+        getPage: async (slug: string) => {
+            const response = await HTTPClient.get(`${endpoint}/admin/page/${slug}`);
+            return response.data;
+        },
+        updatePage: async (post: PostType) => {
+            const response = await HTTPClient.post(`${endpoint}/admin/page/update`, post);
+            return response.data;
         },
     }
 };

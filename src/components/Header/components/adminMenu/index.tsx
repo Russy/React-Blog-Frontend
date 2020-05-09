@@ -11,17 +11,17 @@ export default function AdminMenu() {
             <div className="admin-menu">
                 <ul>
                     <li>
-                        <NavLink to="/" >
+                        <NavLink to="/admin" >
                             Posts
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" >
+                        <NavLink to="/admin/pages" >
                             Pages
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/" >
+                        <NavLink to="/admin/settings" >
                             Settings
                         </NavLink>
                     </li>
