@@ -44,17 +44,19 @@ const routes = [
         path: '/login',
         is_private: false,
         component: <Login/>
-    },
-    {
-        path: '/admin/page/:page',
-        is_private: true,
-        component: <Posts/>
     }
     , {
         path: '/admin/post/:id',
         is_private: true,
         component: <EditPost/>
-    }, {
+    },
+    {
+        path: '/admin/pages/page/:page',
+        is_private: true,
+        component: <Pages/>
+    },
+
+    {
         path: '/admin/pages',
         is_private: true,
         component: <Pages/>

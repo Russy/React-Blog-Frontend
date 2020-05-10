@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Container from '../../../elements/container';
 import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
-import { PostType, StoreState } from '../../../state/types';
+import { PageType, PostType, StoreState } from '../../../state/types';
 import { getIsFetching, getPost } from '../../../state/post/selectors';
 import { CLEAR_POST_REQUEST, GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST, GET_EMPTY_POST_REQUEST } from '../../../state/post/actions';
 import { useParams } from 'react-router-dom';
@@ -16,33 +16,40 @@ import Heading from '../../../elements/heading';
 import Status from './components/Status';
 import Tags from './components/Tags';
 import Icons from './components/Icons/indx';
+import { getPage } from '../../../state/page/selectors';
+import {
+    CLEAR_PAGE_REQUEST,
+    GET_EDIT_PAGE_REQUEST,
+    GET_EMPTY_PAGE_REQUEST,
+    PAGE_EDIT_PAGE_REQUEST
+} from '../../../state/page/actions';
 
 type Props = {
-    getPost: (slug: string) => void;
-    getEmptyPost: () => void;
-    updatePost: (post: PostType) => void;
-    post: PostType,
+    getPage: (slug: string) => void;
+    getEmptyPage: () => void;
+    updatePage: (post: PageType) => void;
+    page: PageType,
     isFetching: boolean,
-    clearPost: () => void
+    clearPage: () => void
 };
 
 function EditPage(props: Props) {
 
-    const [post, setPost] = useState(props.post);
+    const [page, setPage] = useState(props.page);
 
     let {id} = useParams();
 
     useEffect(() => {
         if (id != 'new') {
-            props.getPost(id);
+            props.getPage(id);
         } else {
-            props.getEmptyPost();
+            props.getEmptyPage();
         }
     }, []);
 
     useEffect(() => {
-        setPost(props.post);
-    }, [props.post]);
+        setPage(props.page);
+    }, [props.page]);
 
     return <Layout>
         <Container>
@@ -50,42 +57,15 @@ function EditPage(props: Props) {
                 sidebar={<>
 
                     <Status
-                        status={post.is_published}
+                        status={page.is_published}
                         onSelect={(is_published) => {
-                            setPost({
-                                ...post,
+                            setPage({
+                                ...page,
                                 is_published
                             });
                         }}
                     />
 
-                    <Tags
-                        postTags={post.tags}
-                        onChange={(tag, checked) => {
-                            if (checked) {
-                                setPost({
-                                    ...post,
-                                    tags: [...post.tags, tag]
-                                });
-                            } else {
-                                setPost({
-                                    ...post,
-                                    tags: post.tags.filter(_tag => _tag.id !== tag.id)
-                                });
-                            }
-
-                        }}
-                    />
-
-                    <Icons
-                        icon={post.icon}
-                        onChange={(icon) => {
-                            setPost({
-                                ...post,
-                                icon
-                            });
-                        }}
-                    />
                 </>}
             >
                 <WithPreloader
@@ -101,37 +81,24 @@ function EditPage(props: Props) {
                         type={'text'}
                         placeholder={'Title'}
                         name={'title'}
-                        value={post.title}
+                        value={page.title}
                         onChange={(e) => {
-                            setPost({
-                                ...post,
+                            setPage({
+                                ...page,
                                 title: e.target.value
                             });
-                        }}
-                    />
-                    <Textarea
-                        name={'excerpt'}
-                        title={'Excerpt'}
-                        content={post.excerpt ? post.excerpt : ''}
-                        onChange={(excerpt) => {
-                            if (post.id || id === 'new') {
-                                setPost({
-                                    ...post,
-                                    excerpt
-                                });
-                            }
                         }}
                     />
 
                     <Textarea
                         title={'Content'}
-                        content={post.content ? post.content : ''}
+                        content={page.content ? page.content : ''}
                         className={'mt-40 mb-30'}
                         name={'content'}
                         onChange={(content) => {
-                            if (post.id || id === 'new') {
-                                setPost({
-                                    ...post,
+                            if (page.id || id === 'new') {
+                                setPage({
+                                    ...page,
                                     content
                                 });
                             }
@@ -141,7 +108,7 @@ function EditPage(props: Props) {
                     <Button
                         type={'primary'}
                         onClick={() => {
-                            props.updatePost(post);
+                            props.updatePage(page);
                         }}
                     >
                         Save
@@ -157,24 +124,24 @@ function EditPage(props: Props) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getPost: (slug: string) => {
-            dispatch(GET_EDIT_POST_REQUEST(slug));
+        getPage: (slug: string) => {
+            dispatch(GET_EDIT_PAGE_REQUEST(slug));
         },
-        getEmptyPost: () => {
-            dispatch(GET_EMPTY_POST_REQUEST());
+        getEmptyPage: () => {
+            dispatch(GET_EMPTY_PAGE_REQUEST());
         },
-        updatePost: (post: PostType) => {
-            dispatch(POST_EDIT_POST_REQUEST(post));
+        updatePage: (post: PostType) => {
+            dispatch(PAGE_EDIT_PAGE_REQUEST(post));
         },
-        clearPost: () => {
-            dispatch(CLEAR_POST_REQUEST());
+        clearPage: () => {
+            dispatch(CLEAR_PAGE_REQUEST());
         }
     };
 };
 
 export default connect(
     (state: StoreState) => ({
-        post: getPost(state),
+        page: getPage(state),
         isFetching: getIsFetching(state)
     }),
     mapDispatchToProps

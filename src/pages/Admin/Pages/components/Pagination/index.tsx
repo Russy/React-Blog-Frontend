@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 type Props = {
     pagination: PaginationType,
-    type: 'tags' | 'posts',
+    type: 'tags' | 'posts' | 'pages',
     slug?: string
 }
 
@@ -20,7 +20,13 @@ export default function Pagination(props: Props) {
 
     return <ul className="pagination">
         {new Array(pagination.last_page).fill(null).map((obj, key) => {
+
             let link =  `/admin/page/${key + 1}`;
+
+            if (props.type === 'pages') {
+                link =  `/admin/pages/page/${key + 1}`;
+            }
+
             return <li key={key}>
                 <Link
                     onClick={() => {

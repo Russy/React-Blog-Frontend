@@ -5,17 +5,18 @@ import FullWidthLayout from '../../../elements/FullWidthLayout';
 import Container from '../../../elements/container';
 import Layout from '../../../elements/layout';
 import { GET_ADMIN_POSTS_REQUEST, GET_POSTS_REQUEST, SEARCH_POSTS_REQUEST } from '../../../state/posts/actions';
-import { Pagination as PaginationType, PostType, StoreState } from '../../../state/types';
-import { getIsFetching, getPagination, getPosts } from '../../../state/posts/selectors';
+import { PageType, Pagination as PaginationType, PostType, StoreState } from '../../../state/types';
+import { getIsFetching, getPagination } from '../../../state/pages/selectors';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from './components/Pagination';
 import WithPreloader from '../../../components/WithPreloader';
-import Paragraph from '../../../elements/paragaph';
+import { getPages } from '../../../state/pages/selectors';
+import { GET_ADMIN_PAGES_REQUEST } from '../../../state/pages/actions';
 
 type Props = {
-    posts: PostType[],
-    getPosts: (page: string | undefined) => {},
-    searchPosts: (query: string) => {},
+    pages: PageType[],
+    getPages: (page: string | undefined) => {},
+    // searchPosts: (query: string) => {},
     isFetching: boolean,
     pagination: PaginationType
 };
@@ -28,9 +29,9 @@ function Pages(props: Props) {
 
     useEffect(() => {
         if (query) {
-            props.searchPosts(query);
+            // props.searchPosts(query);
         } else {
-            props.getPosts(page);
+            props.getPages(page);
         }
     }, [page, query]);
 
@@ -50,9 +51,6 @@ function Pages(props: Props) {
                                 <strong>ID</strong>
                             </div>
                             <div className="admin-post__title">
-                                <strong>Icon</strong>
-                            </div>
-                            <div className="admin-post__title">
                                 <strong>Title</strong>
                             </div>
                             <div className="admin-post__slug">
@@ -69,39 +67,35 @@ function Pages(props: Props) {
                             </div>
                         </div>
 
-                        {props.posts.map((post, key) => {
+                        {props.pages.map((page, key) => {
                             return <div key={key} className={'admin-post'}>
                                 <div className="admin-post__id">
-                                    {post.id}
+                                    {page.id}
                                 </div>
-                                <div className="admin-post__icon">
-                                    <div className={'icon-container'}>
-                                        <span className={post.icon}/>
-                                    </div>
-                                </div>
+
                                 <div className="admin-post__title">
-                                    {post.title}
+                                    {page.title}
                                 </div>
                                 <div className="admin-post__slug">
-                                    {post.slug}
+                                    {page.slug}
                                 </div>
                                 <div className="admin-post__exception">
-                                    <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                                    <div dangerouslySetInnerHTML={{ __html: page.excerpt }} />
                                 </div>
                                 <div className="admin-post__published text-center">
-                                    {post.is_published}
+                                    {page.is_published}
                                 </div>
                                 <div className="admin-post__controls">
                                     <Link
                                         className={'button primary'}
-                                        to={`/admin/post/${post.id}`}
+                                        to={`/admin/page/${page.id}`}
                                     >Edit post</Link>
                                 </div>
                             </div>;
                         })}
 
                         {pagination.last_page > 1 ? <Pagination
-                            type={'posts'}
+                            type={'pages'}
                             pagination={pagination}
                         /> : <></>}
                     </WithPreloader>
@@ -115,8 +109,8 @@ function Pages(props: Props) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getPosts: (page) => {
-            dispatch(GET_ADMIN_POSTS_REQUEST(page));
+        getPages: (page) => {
+            dispatch(GET_ADMIN_PAGES_REQUEST(page));
         },
         searchPosts: (query) => {
             // dispatch(SEARCH_POSTS_REQUEST(query));
@@ -126,7 +120,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
     (state: StoreState) => ({
-        posts: getPosts(state),
+        pages: getPages(state),
         isFetching: getIsFetching(state),
         pagination: getPagination(state)
     }),

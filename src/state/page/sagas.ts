@@ -15,7 +15,7 @@ function* fetchEditPage(action) {
 function* postEditPage(action) {
     const post = yield call(Api.admin.updatePage, action.payload);
     yield put(actions.PAGE_EDIT_PAGE_SUCCESS(post));
-    document.location.href = '/admin';
+    document.location.href = '/admin/pages';
 }
 
 export function* pageSaga() {
