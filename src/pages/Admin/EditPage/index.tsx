@@ -5,8 +5,7 @@ import Container from '../../../elements/container';
 import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
 import { PageType, PostType, StoreState } from '../../../state/types';
-import { getIsFetching, getPost } from '../../../state/post/selectors';
-import { CLEAR_POST_REQUEST, GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST, GET_EMPTY_POST_REQUEST } from '../../../state/post/actions';
+import { getIsFetching } from '../../../state/page/selectors';
 import { useParams } from 'react-router-dom';
 import SidebarLayout from '../../../elements/sidebarLayout';
 import Textarea from './components/Textarea';
@@ -14,8 +13,6 @@ import Button from '../../../elements/button';
 import Input from '../../../elements/Input';
 import Heading from '../../../elements/heading';
 import Status from './components/Status';
-import Tags from './components/Tags';
-import Icons from './components/Icons/indx';
 import { getPage } from '../../../state/page/selectors';
 import {
     CLEAR_PAGE_REQUEST,
