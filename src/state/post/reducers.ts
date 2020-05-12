@@ -50,6 +50,16 @@ export const post = (state: PostStoreState = defaultState, {type, payload}) => {
                     tags: state.post.tags.filter(tag => tag.id !== payload)
                 }
             };
+        case 'POST_DELETE_REQUEST':
+            return {
+                ...state,
+                is_fetching: true
+            };
+        case 'POST_DELETE_SUCCESS':
+            return {
+                ...state,
+                is_fetching: true
+            };
         default:
             return state;
     }

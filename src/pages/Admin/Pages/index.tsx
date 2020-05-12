@@ -47,17 +47,14 @@ function Pages(props: Props) {
                         >New Page</Link>
 
                         <div className={'admin-post'}>
-                            <div className="admin-post__id">
+                            <div  className="admin-post__id">
                                 <strong>ID</strong>
                             </div>
-                            <div className="admin-post__title">
+                            <div  style={{width: '60%'}} className="admin-post__title">
                                 <strong>Title</strong>
                             </div>
                             <div className="admin-post__slug">
                                 <strong>Slug</strong>
-                            </div>
-                            <div className="admin-post__exception">
-                                <strong>Exception</strong>
                             </div>
                             <div className="admin-post__published">
                                 <strong>Published</strong>
@@ -69,18 +66,15 @@ function Pages(props: Props) {
 
                         {props.pages.map((page, key) => {
                             return <div key={key} className={'admin-post'}>
-                                <div className="admin-post__id">
+                                <div  style={{width: '5%'}} className="admin-post__id">
                                     {page.id}
                                 </div>
 
-                                <div className="admin-post__title">
+                                <div style={{width: '60%'}} className="admin-post__title">
                                     {page.title}
                                 </div>
                                 <div className="admin-post__slug">
                                     {page.slug}
-                                </div>
-                                <div className="admin-post__exception">
-                                    <div dangerouslySetInnerHTML={{ __html: page.excerpt }} />
                                 </div>
                                 <div className="admin-post__published text-center">
                                     {page.is_published}
@@ -89,7 +83,7 @@ function Pages(props: Props) {
                                     <Link
                                         className={'button primary'}
                                         to={`/admin/page/${page.id}`}
-                                    >Edit post</Link>
+                                    >Edit page</Link>
                                 </div>
                             </div>;
                         })}

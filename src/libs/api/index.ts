@@ -39,6 +39,10 @@ export const Api = {
             const response = await HTTPClient.get(`${endpoint}/admin/post/${slug}`);
             return response.data;
         },
+        deletePost: async (id: number) => {
+            const response = await HTTPClient.get(`${endpoint}/admin/post/delete/${id}`);
+            return response.data;
+        },
         updatePost: async (post: PostType) => {
             const response = await HTTPClient.post(`${endpoint}/admin/post/update`, post);
             return response.data;
@@ -63,6 +67,10 @@ export const Api = {
         },
         updatePage: async (post: PostType) => {
             const response = await HTTPClient.post(`${endpoint}/admin/page/update`, post);
+            return response.data;
+        },
+        deletePage: async (id: number) => {
+            const response = await HTTPClient.get(`${endpoint}/admin/page/delete/${id}`);
             return response.data;
         },
     }

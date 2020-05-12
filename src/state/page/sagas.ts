@@ -18,8 +18,16 @@ function* postEditPage(action) {
     document.location.href = '/admin/pages';
 }
 
+function* deletePage(action) {
+    yield call(Api.admin.deletePage, action.payload);
+    yield put(actions.PAGE_DELETE_SUCCESS());
+    document.location.href = '/admin/pages';
+}
+
+
 export function* pageSaga() {
     yield takeLatest('GET_PAGE_REQUEST', fetchPage);
     yield takeLatest('GET_EDIT_PAGE_REQUEST', fetchEditPage);
     yield takeLatest('PAGE_EDIT_PAGE_REQUEST', postEditPage);
+    yield takeLatest('PAGE_DELETE_REQUEST', deletePage);
 }

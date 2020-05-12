@@ -20,7 +20,7 @@ import { getPage } from '../../../state/page/selectors';
 import {
     CLEAR_PAGE_REQUEST,
     GET_EDIT_PAGE_REQUEST,
-    GET_EMPTY_PAGE_REQUEST,
+    GET_EMPTY_PAGE_REQUEST, PAGE_DELETE_REQUEST,
     PAGE_EDIT_PAGE_REQUEST
 } from '../../../state/page/actions';
 
@@ -30,7 +30,8 @@ type Props = {
     updatePage: (post: PageType) => void;
     page: PageType,
     isFetching: boolean,
-    clearPage: () => void
+    clearPage: () => void,
+    deletePage: (id: number) => void,
 };
 
 function EditPage(props: Props) {
@@ -106,6 +107,7 @@ function EditPage(props: Props) {
                     />
 
                     <Button
+                        className={'mr-10'}
                         type={'primary'}
                         onClick={() => {
                             props.updatePage(page);
@@ -113,6 +115,16 @@ function EditPage(props: Props) {
                     >
                         Save
                     </Button>
+
+                    <Button
+                        type={'warning'}
+                        onClick={() => {
+                            props.deletePage(page.id);
+                        }}
+                    >
+                        Delete
+                    </Button>
+
 
                 </WithPreloader>
 
@@ -135,7 +147,10 @@ const mapDispatchToProps = dispatch => {
         },
         clearPage: () => {
             dispatch(CLEAR_PAGE_REQUEST());
-        }
+        },
+        deletePage: (id: number) => {
+            dispatch(PAGE_DELETE_REQUEST(id));
+        },
     };
 };
 

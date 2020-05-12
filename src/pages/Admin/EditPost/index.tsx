@@ -6,7 +6,13 @@ import WithPreloader from '../../../components/WithPreloader';
 import Layout from '../../../elements/layout';
 import { PostType, StoreState } from '../../../state/types';
 import { getIsFetching, getPost } from '../../../state/post/selectors';
-import { CLEAR_POST_REQUEST, GET_EDIT_POST_REQUEST, POST_EDIT_POST_REQUEST, GET_EMPTY_POST_REQUEST } from '../../../state/post/actions';
+import {
+    CLEAR_POST_REQUEST,
+    GET_EDIT_POST_REQUEST,
+    POST_EDIT_POST_REQUEST,
+    GET_EMPTY_POST_REQUEST,
+    POST_DELETE_REQUEST
+} from '../../../state/post/actions';
 import { useParams } from 'react-router-dom';
 import SidebarLayout from '../../../elements/sidebarLayout';
 import Textarea from './components/Textarea';
@@ -23,7 +29,8 @@ type Props = {
     updatePost: (post: PostType) => void;
     post: PostType,
     isFetching: boolean,
-    clearPost: () => void
+    clearPost: () => void,
+    deletePost: (id: number) => void,
 };
 
 function EditPost(props: Props) {
@@ -139,12 +146,22 @@ function EditPost(props: Props) {
                     />
 
                     <Button
+                        className={'mr-10'}
                         type={'primary'}
                         onClick={() => {
                             props.updatePost(post);
                         }}
                     >
                         Save
+                    </Button>
+
+                    <Button
+                        type={'warning'}
+                        onClick={() => {
+                            props.deletePost(post.id);
+                        }}
+                    >
+                        Delete
                     </Button>
 
                 </WithPreloader>
@@ -168,7 +185,10 @@ const mapDispatchToProps = dispatch => {
         },
         clearPost: () => {
             dispatch(CLEAR_POST_REQUEST());
-        }
+        },
+        deletePost: (id: number) => {
+            dispatch(POST_DELETE_REQUEST(id));
+        },
     };
 };
 

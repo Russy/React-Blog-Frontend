@@ -18,8 +18,15 @@ function* postEditPost(action) {
     document.location.href = '/admin';
 }
 
+function* deletePost(action) {
+    yield call(Api.admin.deletePost, action.payload);
+    yield put(actions.POST_DELETE_SUCCESS());
+    document.location.href = '/admin';
+}
+
 export function* postSaga() {
     yield takeLatest('GET_POST_REQUEST', fetchPost);
     yield takeLatest('GET_EDIT_POST_REQUEST', fetchEditPost);
     yield takeLatest('POST_EDIT_POST_REQUEST', postEditPost);
+    yield takeLatest('POST_DELETE_REQUEST', deletePost);
 }

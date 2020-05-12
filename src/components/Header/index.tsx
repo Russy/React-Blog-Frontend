@@ -28,6 +28,7 @@ export default function Header() {
                             <Link className={'button primary mr-10'} to={`/admin`}>
                                 Admin
                             </Link>
+
                             <Button
                                 type={'primary'}
                                 onClick={() => {

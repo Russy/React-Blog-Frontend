@@ -12,5 +12,7 @@ export const PAGE_EDIT_PAGE_SUCCESS = (page: PageType) => ({ type: 'PAGE_EDIT_PA
 export const PAGE_EDIT_PAGE_FAILED = () => ({ type: 'PAGE_EDIT_PAGE_FAILED'});
 
 export const CLEAR_PAGE_REQUEST = () => ({ type: 'CLEAR_PAGE_REQUEST'});
-
 export const GET_EMPTY_PAGE_REQUEST = () => ({ type: 'GET_EMPTY_PAGE_REQUEST'});
+
+export const PAGE_DELETE_REQUEST = (page: number) => ({ type: 'PAGE_DELETE_REQUEST', payload: page});
+export const PAGE_DELETE_SUCCESS = () => ({ type: 'PAGE_DELETE_SUCCESS'});

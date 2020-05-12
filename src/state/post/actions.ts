@@ -14,3 +14,6 @@ export const POST_EDIT_POST_FAILED = () => ({ type: 'POST_EDIT_POST_FAILED'});
 export const CLEAR_POST_REQUEST = () => ({ type: 'CLEAR_POST_REQUEST'});
 
 export const GET_EMPTY_POST_REQUEST = () => ({ type: 'GET_EMPTY_POST_REQUEST'});
+
+export const POST_DELETE_REQUEST = (page: number) => ({ type: 'POST_DELETE_REQUEST', payload: page});
+export const POST_DELETE_SUCCESS = () => ({ type: 'POST_DELETE_SUCCESS'});

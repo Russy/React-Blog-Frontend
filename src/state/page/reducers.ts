@@ -47,6 +47,18 @@ export const page = (state: PageStoreState = defaultState, {type, payload}) => {
                     ...state.page,
                 }
             };
+
+        case 'PAGE_DELETE_REQUEST':
+            return {
+                ...state,
+                is_fetching: true
+            };
+        case 'PAGE_DELETE_SUCCESS':
+            return {
+                ...state,
+                is_fetching: true
+            };
+
         default:
             return state;
     }
