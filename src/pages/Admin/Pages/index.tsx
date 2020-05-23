@@ -82,7 +82,7 @@ function Pages(props: Props) {
                                 <div className="admin-post__controls">
                                     <Link
                                         className={'button primary'}
-                                        to={`/admin/page/${page.id}`}
+                                        to={`/admin/pages/${page.id}`}
                                     >Edit page</Link>
                                 </div>
                             </div>;
