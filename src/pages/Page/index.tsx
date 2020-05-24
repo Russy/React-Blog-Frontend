@@ -66,7 +66,7 @@ function Page(props: Props) {
                 </WithPreloader>
 
             </SidebarLayout>
-        </Container>;
+        </Container>
     </Layout>;
 
 }
