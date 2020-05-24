@@ -40,7 +40,8 @@ const publicRoutes = [{
 },
     {
         path: '/',
-        component: <Home/>
+        component: <Home/>,
+        exact: true
     }
 ];
 const routes = [
@@ -77,20 +78,22 @@ export default function App() {
             <Router>
                 <Switch>
 
-                    {routes.map((route, key) => {
+                    {routes.map((route: {component: any, path: string, exact?: boolean}, key) => {
                         return <PrivateRouter
                             key={key}
                             isPrivate={true}
                             path={route.path}
+                            exact={route.exact}
                         >
                             {route.component}
                         </PrivateRouter>;
                     })}
-                    {publicRoutes.map((route, key) => {
+                    {publicRoutes.map((route: {component: any, path: string, exact?: boolean}, key) => {
                     return <PrivateRouter
                         key={key}
                         isPrivate={false}
                         path={route.path}
+                        exact={route.exact}
                     >
                         {route.component}
                     </PrivateRouter>;

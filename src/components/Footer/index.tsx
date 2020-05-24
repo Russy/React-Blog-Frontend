@@ -37,17 +37,21 @@ function Footer({options}: Props) {
             </div>
             <div className="footer__bottom">
                 <div className="copyright">
-                    © All right
+                    © {getOption(options, 'title', '')}
                 </div>
                 <div className="social">
                     <ul>
                         <li>
-                            <Link to={''}>
+                            <Link to={''} onClick={() => {
+                                document.location.href = 'https://twitter.com/GabrielSayler';
+                            }}>
                                 twitter
                             </Link>
                         </li>
                         <li>
-                            <Link to={''}>
+                            <Link to={''} onClick={() => {
+                                document.location.href = 'https://www.facebook.com/ruslan.kolibabcuk';
+                            }}>
                                 facebook
                             </Link>
                         </li>

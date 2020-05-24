@@ -1,10 +1,30 @@
 import * as React from 'react';
 import './style.scss';
+import { Option } from '../../../../state/settings/state';
+import { connect } from 'react-redux';
+import { StoreState } from '../../../../state/types';
+import { getOptions } from '../../../../state/settings/selectors';
 
-type Props = {};
+type Props = {
+    options: any[]
+};
 
-export default function Logo() {
+function Logo({options}: Props) {
     return <div className="main-logo">
-       Lorem ipsum dollar sith...
+        {getOption(options, 'title', '')}
     </div>;
 }
+
+const getOption = (options: Option[], option, def: string | []) => {
+    const op = options.find((op) => op.name === option);
+    return op ? op.value : def;
+}
+
+
+export default connect(
+    (state: StoreState) => ({
+        options: getOptions(state)
+    }),
+    null
+)(Logo);
+
