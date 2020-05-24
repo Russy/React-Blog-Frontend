@@ -1,9 +1,18 @@
 import * as React from 'react';
 import './style.scss';
 import Container from '../../elements/container';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { Option } from '../../state/settings/state';
+import { connect } from 'react-redux';
+import { StoreState } from '../../state/types';
+import { getOptions } from '../../state/settings/selectors';
 
-export default function Footer() {
+type Props = {
+    options: any[]
+};
+
+function Footer({options}: Props) {
+    const menu = getOption(options, 'footer-menu', []) as [];
 
     return <footer className={'footer'}>
         <Container>
@@ -16,11 +25,13 @@ export default function Footer() {
                                 Home
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/about">
-                                About
-                            </Link>
-                        </li>
+                        {menu.map(({value, label}, key) => {
+                            return <li key={key}>
+                                <NavLink to={`/page/${value}`}>
+                                    {label}
+                                </NavLink>
+                            </li>;
+                        })}
                     </ul>
                 </div>
             </div>
@@ -46,3 +57,16 @@ export default function Footer() {
         </Container>
     </footer>;
 }
+
+const getOption = (options: Option[], option, def: string | []) => {
+    const op = options.find((op) => op.name === option);
+    return op ? op.value : def;
+}
+
+
+export default connect(
+    (state: StoreState) => ({
+        options: getOptions(state)
+    }),
+    null
+)(Footer);

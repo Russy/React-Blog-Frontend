@@ -5,7 +5,7 @@ import {
     Switch,
 } from 'react-router-dom';
 import Home from './pages/Home';
-import About from './pages/About';
+
 import Post from './pages/Post';
 import Tags from './pages/Tags';
 import Login from './pages/Login';
@@ -15,9 +15,10 @@ import EditPost from './pages/Admin/EditPost';
 import Pages from './pages/Admin/Pages';
 import EditPage from './pages/Admin/EditPage';
 import Settings from './pages/Admin/Settings';
+import Page from './pages/Page';
 const publicRoutes = [{
-    path: '/about',
-    component: <About/>
+    path: '/page/:slug',
+    component: <Page/>
 }, {
     path: '/post/:slug',
     component: <Post/>
@@ -37,7 +38,6 @@ const publicRoutes = [{
     path: '/login',
     component: <Login/>
 },
-
     {
         path: '/',
         component: <Home/>

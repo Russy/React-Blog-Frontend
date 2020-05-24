@@ -3,9 +3,11 @@ import { Api } from '../../libs/api';
 import * as actions from './actions';
 import { fetchPages } from '../pages/sagas';
 
-export function* fetchOptions() {
+export function* fetchOptions(action) {
     try {
-        yield fetchPages();
+        if (!action.payload) {
+            yield fetchPages();
+        }
         const options = yield call(Api.getOptions);
         yield put(actions.GET_OPTIONS_SUCCESS(options));
     } catch (e) {
