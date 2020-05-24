@@ -83,7 +83,7 @@ function Post(props: Props) {
                 </WithPreloader>
 
             </SidebarLayout>
-        </Container>;
+        </Container>
     </Layout>;
 }
 

@@ -4,15 +4,16 @@ import { Option } from '../../../../state/settings/state';
 import { connect } from 'react-redux';
 import { StoreState } from '../../../../state/types';
 import { getOptions } from '../../../../state/settings/selectors';
+import { Link } from 'react-router-dom';
 
 type Props = {
     options: any[]
 };
 
 function Logo({options}: Props) {
-    return <div className="main-logo">
+    return <Link to={'/'} className="main-logo">
         {getOption(options, 'title', '')}
-    </div>;
+    </Link>;
 }
 
 const getOption = (options: Option[], option, def: string | []) => {
