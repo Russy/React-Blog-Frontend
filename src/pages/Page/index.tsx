@@ -54,7 +54,7 @@ function Page(props: Props) {
                     <SubSection>
                         Posted at: {moment(page.updated_at).format('D/MM/YYYY')}
                     </SubSection>
-                    <Paragraph>
+                    <Paragraph className={'mt-20'}>
                         <div dangerouslySetInnerHTML={{ __html: page.content }} />
                     </Paragraph>
 
