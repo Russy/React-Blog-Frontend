@@ -34,7 +34,7 @@ function Post(props: Props) {
     }, []);
 
     const config = {
-        url: 'http://loremipsum.space/',
+        url: `https://loremipsum.space/post/${post.slug}`,
         identifier: post.slug,
         title: post.title,
     };
@@ -77,7 +77,7 @@ function Post(props: Props) {
 
 
                     <DiscussionEmbed
-                        shortname='example'
+                        shortname={'post'}
                         config={config}
                     />
                 </WithPreloader>
