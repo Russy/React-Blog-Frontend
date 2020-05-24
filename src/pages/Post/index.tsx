@@ -34,9 +34,9 @@ function Post(props: Props) {
     }, []);
 
     const config = {
-        url: 'https://koshelki.pro',
-        identifier: 'home',
-        title: 'Title',
+        url: 'http://loremipsum.space/',
+        identifier: post.slug,
+        title: post.title,
     };
     return <Layout>
         <Container>

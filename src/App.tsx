@@ -17,7 +17,7 @@ import EditPage from './pages/Admin/EditPage';
 import Settings from './pages/Admin/Settings';
 import Page from './pages/Page';
 const publicRoutes = [{
-    path: '/page/:slug',
+    path: '/pages/:slug',
     component: <Page/>
 }, {
     path: '/post/:slug',

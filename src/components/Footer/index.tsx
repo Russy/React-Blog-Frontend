@@ -27,7 +27,7 @@ function Footer({options}: Props) {
                         </li>
                         {menu.map(({value, label}, key) => {
                             return <li key={key}>
-                                <NavLink to={`/page/${value}`}>
+                                <NavLink to={`/pages/${value}`}>
                                     {label}
                                 </NavLink>
                             </li>;
