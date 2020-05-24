@@ -14,6 +14,7 @@ import PrivateRouter from './libs/PrivateRouter';
 import EditPost from './pages/Admin/EditPost';
 import Pages from './pages/Admin/Pages';
 import EditPage from './pages/Admin/EditPage';
+import Settings from './pages/Admin/Settings';
 const publicRoutes = [{
     path: '/about',
     component: <About/>
@@ -35,7 +36,13 @@ const publicRoutes = [{
 }, {
     path: '/login',
     component: <Login/>
-}];
+},
+
+    {
+        path: '/',
+        component: <Home/>
+    }
+];
 const routes = [
     {
         path: '/admin/post/:id',
@@ -53,7 +60,7 @@ const routes = [
         component: <Pages/>
     }, {
         path: '/admin/settings',
-        component: <Posts/>
+        component: <Settings/>
     },{
         path: '/admin/page/:page',
         component: <Posts/>
@@ -61,11 +68,7 @@ const routes = [
     {
         path: '/admin',
         component: <Posts/>
-    },
-    {
-        path: '/',
-        component: <Home/>
-    },
+    }
 ];
 
 export default function App() {
@@ -73,15 +76,7 @@ export default function App() {
         <div className="App">
             <Router>
                 <Switch>
-                    {publicRoutes.map((route, key) => {
-                        return <PrivateRouter
-                            key={key}
-                            isPrivate={false}
-                            path={route.path}
-                        >
-                            {route.component}
-                        </PrivateRouter>;
-                    })}
+
                     {routes.map((route, key) => {
                         return <PrivateRouter
                             key={key}
@@ -91,6 +86,15 @@ export default function App() {
                             {route.component}
                         </PrivateRouter>;
                     })}
+                    {publicRoutes.map((route, key) => {
+                    return <PrivateRouter
+                        key={key}
+                        isPrivate={false}
+                        path={route.path}
+                    >
+                        {route.component}
+                    </PrivateRouter>;
+                })}
                 </Switch>
             </Router>
         </div>

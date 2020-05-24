@@ -43,7 +43,7 @@ function Pages(props: Props) {
                     >
                         <Link
                             className={'button primary mb-20'}
-                            to={'/admin/page/new'}
+                            to={'/admin/pages/new'}
                         >New Page</Link>
 
                         <div className={'admin-post'}>

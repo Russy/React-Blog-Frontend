@@ -1,5 +1,6 @@
 import HTTPClient from '../HTTPClient';
 import { PostType } from '../../state/types';
+import { Options } from 'react-redux';
 
 const endpoint = process.env.REACT_APP_API_URL;
 export const Api = {
@@ -22,12 +23,16 @@ export const Api = {
         const response = await HTTPClient.post(`${endpoint}/search`, {query});
         return response.data;
     },
-    getPages: async (page: string = '1') => {
-        const response = await HTTPClient.get(`${endpoint}/pages?page=${page}`);
+    getPages: async () => {
+        const response = await HTTPClient.get(`${endpoint}/pages`);
         return response.data;
     },
     getPage: async (slug: string) => {
         const response = await HTTPClient.get(`${endpoint}/page/${slug}`);
+        return response.data;
+    },
+    getOptions: async () => {
+        const response = await HTTPClient.get(`${endpoint}/options`);
         return response.data;
     },
     admin: {
@@ -71,6 +76,10 @@ export const Api = {
         },
         deletePage: async (id: number) => {
             const response = await HTTPClient.get(`${endpoint}/admin/page/delete/${id}`);
+            return response.data;
+        },
+        postOptions: async (options: Options[]) => {
+            const response = await HTTPClient.post(`${endpoint}/admin/options`, {options});
             return response.data;
         },
     }

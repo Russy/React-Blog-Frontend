@@ -4,6 +4,7 @@ import { LoginStoreState } from './login/state';
 import { TagsStoreState } from './tags/state';
 import { PagesStoreState } from './pages/state';
 import { PageStoreState } from './page/state';
+import { SettingsStoreState } from './settings/state';
 
 export interface StoreState {
     readonly posts: PostsStoreState;
@@ -12,6 +13,7 @@ export interface StoreState {
     readonly tags: TagsStoreState;
     readonly pages: PagesStoreState;
     readonly page: PageStoreState;
+    readonly settings: SettingsStoreState;
 }
 
 export type TagType = {

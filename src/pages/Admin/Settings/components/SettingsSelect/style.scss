@@ -1,0 +1,57 @@
+.settings-select {
+  margin-bottom: 20px;
+}
+
+.settings-select__wrapper {
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+.settings-select__option {
+  display: inline-flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #cccccc;
+  &:last-child {
+    border-bottom: none;
+  }
+  min-width: 350px;
+  div {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  .option-name {
+    flex: none;
+    font-size: 14px;
+    min-width: 305px;
+  }
+  .remove-icon {
+    flex: none;
+    width: 20px;
+    height: 15px;
+    position: relative;
+    cursor: pointer;
+    top: -2px;
+    margin-right: 0;
+    &:after {
+      content: '';
+      width: 2px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      background: #999999;
+      transform: rotate(45deg);
+      left: 8px;
+
+    }
+    &:before {
+      width: 2px;
+      content: '';
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 8px;
+      background: #999999;
+      transform: rotate(-45deg);
+    }
+  }
+}

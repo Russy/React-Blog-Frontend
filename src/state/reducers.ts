@@ -5,6 +5,7 @@ import { post } from './post/reducers';
 import { login } from './login/reducers';
 import { tags } from './tags/reducers';
 import { page } from './page/reducers';
+import { settings } from './settings/reducers';
 
 export const rootReducer: Reducer = combineReducers({
     posts,
@@ -12,5 +13,6 @@ export const rootReducer: Reducer = combineReducers({
     login,
     tags,
     pages,
-    page
+    page,
+    settings
 });
