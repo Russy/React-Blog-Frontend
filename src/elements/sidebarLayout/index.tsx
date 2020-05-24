@@ -5,7 +5,7 @@ export default function SidebarLayout({children, sidebar}) {
         <div className="column pr-10">
             {children}
         </div>
-        <div className="column pl-10">
+        <div className="column pl-10 hide-mobile">
             {sidebar}
         </div>
     </div>

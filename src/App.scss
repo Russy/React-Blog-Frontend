@@ -80,3 +80,15 @@ code {
 .text-center {
   text-align: center;
 }
+
+.hide-mobile {
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.full-width-mobile {
+  @media (max-width: 960px) {
+    width: 100%!important;
+  }
+}
