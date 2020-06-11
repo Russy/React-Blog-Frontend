@@ -39,7 +39,6 @@ function Home(props: Props) {
             <SidebarLayout
                 sidebar={<>
                     <Ad/>
-                    <Ad/>
                 </>}
             >
                 <WithPreloader isLoading={isFetching}>
