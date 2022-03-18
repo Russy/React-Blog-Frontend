@@ -2917,10 +2917,10 @@ ckeditor4-react@^1.1.0:
     load-script "^1.0.0"
     prop-types "^15.6.2"
 
-ckeditor4@^4.14.0:
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/ckeditor4/-/ckeditor4-4.14.0.tgz#bfcbe942599fa0c6f488309ecbfe38b2519f919b"
-  integrity sha512-g5p3bhbxbwB094bE7ss0rOyvG/azYdRjLTyngnPM2+fKZhnPrMVaFDx3SiiWKB+zyvndT3Deu54VTv/z2MQJCA==
+ckeditor4@^4.18.0:
+  version "4.18.0"
+  resolved "https://registry.yarnpkg.com/ckeditor4/-/ckeditor4-4.18.0.tgz#d54861a9d5a01029f16a54b820a4af10d3bbc156"
+  integrity sha512-O4tnQCH0APKrBsz78L+m48s9Cs90aq0Nsatmh9CUj2YBTh8UZYdYcelBLVA84SlwA1nsx07aC76Zn08vgHqmLQ==
 
 class-utils@^0.3.5:
   version "0.3.6"
